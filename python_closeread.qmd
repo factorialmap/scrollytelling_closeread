@@ -24,11 +24,11 @@ Draw your readers attention with: @cr-features
 
 We load the library. [@cr-plotnine]{highlight="1"}
 
-We use a data frame with economic data. [@cr-plotnine]{highlight="3"}
+We use a data frame with economic data. [@cr-plotnine]{highlight="6"}
 
-We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="4"}
+We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="9"}
 
-We split the chart by variable type. [@cr-plotnine]{highlight="7"}
+We split the chart by variable type. [@cr-plotnine]{highlight="12"}
 
 :::{#cr-plotnine}
 ```{python}
