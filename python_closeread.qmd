@@ -22,13 +22,13 @@ Draw your readers attention with: @cr-features
 3. Panning
 :::
 
-We load the library. [@cr-plotnine]{highlight="1"}
+We load the library. [@cr-plotnine]{highlight="1-5"}
 
-We use a data frame with economic data. [@cr-plotnine]{highlight="3"}
+We use a data frame with economic data. [@cr-plotnine]{highlight="6"}
 
-We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="4"}
+We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="9"}
 
-We split the chart by variable type. [@cr-plotnine]{highlight="7"}
+We split the chart by variable type. [@cr-plotnine]{highlight="12"}
 
 :::{#cr-plotnine}
 ```{python}
@@ -45,11 +45,27 @@ from plotnine.data import economics_long
 ggplot(economics_long, aes(x = "date", y = "value"))
 + geom_point()
 + geom_line()
-+ facet_wrap("variable")
++ facet_wrap("variable", scales='free_y')
 )
 ```
 
 :::
+
+Now, how to explain this chart?
+
+
+PCE is personal consumption expenditure. [@cr-kpi]{zoom-to="12"}
+
+pop is population of United States. [@cr-kpi]{pan-to ="-55%, 50%" scale-by ="2"} 
+
+psvert is saving rates in pencentage. [@cr-kpi]{pan-to = "25%, -50%" scale-by = "1.5"}
+
+unemploy is unemployment rate. [@cr-kpi]{pan-to = "-76%, -50%" scale-by = "2"}
+
+:::{#cr-kpi}
+![](closeread_formats_files\figure-html\unnamed-chunk-1-1.png)
+:::
+
 
 
 :::
