@@ -1,0 +1,54 @@
+---
+title: Closeread formats and colors
+format:
+  closeread-html:
+    remove-header-space: true
+    cr-style:
+      narrative-background-color-overlay: "#9e948f"
+      narrative-text-color-overlay: "#F0E8E4"
+      narrative-background-color-sidebar: "#563f46"
+      narrative-text-color-sidebar: "#F0E8E4"
+---
+
+:::{.cr-section}
+
+Closeread enables scrollytelling
+
+Draw your readers attention with: @cr-features
+
+::: {#cr-features}
+1. Highlighting
+2. Zooming
+3. Panning
+:::
+
+We load the library. [@cr-plotnine]{highlight="1"}
+
+We use a data frame with economic data. [@cr-plotnine]{highlight="3"}
+
+We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="4"}
+
+We split the chart by variable type. [@cr-plotnine]{highlight="7"}
+
+:::{#cr-plotnine}
+```{python}
+
+import numpy as np
+import pandas as pd
+import plotnine
+
+from plotnine import *
+from plotnine.data import economics_long
+
+(
+ggplot(economics_long, aes(x = "date", y = "value"))
++ geom_point()
++ geom_line()
++ facet_wrap("variable")
+)
+```
+
+:::
+
+
+:::
