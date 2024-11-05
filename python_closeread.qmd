@@ -51,16 +51,18 @@ ggplot(economics_long, aes(x = "date", y = "value"))
 
 :::
 
-Now, how to explain this chart?
+Now, how to explain this chart? [@cr-kpi]
 
 
-PCE is personal consumption expenditure. [@cr-kpi]{zoom-to="12"}
+pce is personal consumption expenditure. [@cr-kpi]{pan-to="60%,50%" scale-by="2"}
 
-pop is population of United States. [@cr-kpi]{pan-to ="-55%, 50%" scale-by ="2"} 
+pop is population of United States. [@cr-kpi]{pan-to="-20%,50%" scale-by="2"} 
 
-psvert is saving rates in pencentage. [@cr-kpi]{pan-to = "25%, -50%" scale-by = "1.5"}
+psavert is saving rates in pencentage. [@cr-kpi]{pan-to="-80%,50%" scale-by="2"}
 
-unemploy is unemployment rate. [@cr-kpi]{pan-to = "-76%, -50%" scale-by = "2"}
+uempmed is median duration of unemployment. [@cr-kpi]{pan-to="50%,-40%" scale-by="2"}
+
+unemploy is unemployment rate. [@cr-kpi]{pan-to="-20%,-40%" scale-by="2"}
 
 :::{#cr-kpi}
 ![](closeread_formats_files\figure-html\unnamed-chunk-1-1.png)
