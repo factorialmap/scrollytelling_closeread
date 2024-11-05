@@ -32,6 +32,7 @@ We split the chart by variable type. [@cr-plotnine]{highlight="7"}
 
 :::{#cr-plotnine}
 ```{python}
+#| echo: true
 
 import numpy as np
 import pandas as pd
