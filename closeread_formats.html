@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>My document</title>
+<title>Closeread formats and colors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -37,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="closeread_formats_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
 <script src="closeread_formats_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
 <meta cr-debug-mode="false">
-<meta cr-remove-header-space="false">
+<meta cr-remove-header-space="true">
 
 
 <link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
@@ -51,16 +85,17 @@ ul.task-list li input[type="checkbox"] {
       <!-- user-provided yaml closeread style options -->
       <style>
         :root {
-          --cr-narrative-background-color-overlay: #9e948f;
---cr-narrative-background-color-sidebar: #563f46;
+          --cr-narrative-background-color-sidebar: #563f46;
+--cr-narrative-background-color-overlay: #9e948f;
 --cr-narrative-text-color-overlay: #F0E8E4;
+--cr-narrative-text-color-sidebar: #F0E8E4;
         }
       </style>
     
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">My document</h1>
+<h1 class="title">Closeread formats and colors</h1>
 </div>
 
 
@@ -77,7 +112,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Hello World, Plese read my closeread story below.</p>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
 <div class="trigger">
@@ -90,6 +124,26 @@ ul.task-list li input[type="checkbox"] {
 <p>Draw your readers attention with:</p>
 </div>
 </div>
+<div class="trigger new-trigger" data-highlight="1" data-focus-on="cr-dplyr">
+<div class="narrative">
+<p>We load the library.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-highlight="3" data-focus-on="cr-dplyr">
+<div class="narrative">
+<p>We use a data frame with economic data.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-highlight="4" data-focus-on="cr-dplyr">
+<div class="narrative">
+<p>We plot the values using date(x axis) and values(y axis).</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-highlight="7" data-focus-on="cr-dplyr">
+<div class="narrative">
+<p>We split the chart by variable type.</p>
+</div>
+</div>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
@@ -99,6 +153,24 @@ ul.task-list li input[type="checkbox"] {
 <li>Zooming</li>
 <li>Panning</li>
 </ol>
+</div>
+<div id="cr-dplyr" class="sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>economics_long <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value))<span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="closeread_formats_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

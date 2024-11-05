@@ -1,14 +1,14 @@
 ---
-title: My document
+title: Closeread formats and colors
 format:
   closeread-html:
+    remove-header-space: true
     cr-style:
       narrative-background-color-overlay: "#9e948f"
       narrative-text-color-overlay: "#F0E8E4"
       narrative-background-color-sidebar: "#563f46"
+      narrative-text-color-sidebar: "#F0E8E4"
 ---
-
-Hello World, Plese read my closeread story below.
 
 
 :::{.cr-section}
@@ -21,6 +21,30 @@ Draw your readers attention with: @cr-features
 1. Highlighting
 2. Zooming
 3. Panning
+:::
+
+We load the library. [@cr-dplyr]{highlight="1"}
+
+We use a data frame with economic data. [@cr-dplyr]{highlight="3"}
+
+We plot the values using date(x axis) and values(y axis). [@cr-dplyr]{highlight="4"}
+
+We split the chart by variable type. [@cr-dplyr]{highlight="7"}
+
+:::{#cr-dplyr}
+```{r}
+#| message: false
+#| echo: true
+
+library(tidyverse)
+
+economics_long %>% 
+  ggplot(aes(x = date, y = value))+
+  geom_point()+
+  geom_line()+
+  facet_wrap(~variable, scales = "free_y")
+
+```
 :::
 
 :::
