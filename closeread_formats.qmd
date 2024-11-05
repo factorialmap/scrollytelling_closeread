@@ -1,0 +1,26 @@
+---
+title: My document
+format:
+  closeread-html:
+    cr-style:
+      narrative-background-color-overlay: "#9e948f"
+      narrative-text-color-overlay: "#F0E8E4"
+      narrative-background-color-sidebar: "#563f46"
+---
+
+Hello World, Plese read my closeread story below.
+
+
+:::{.cr-section}
+
+Closeread enables scrollytelling
+
+Draw your readers attention with: @cr-features
+
+::: {#cr-features}
+1. Highlighting
+2. Zooming
+3. Panning
+:::
+
+:::
