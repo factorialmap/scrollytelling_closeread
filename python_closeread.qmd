@@ -51,21 +51,41 @@ ggplot(economics_long, aes(x = "date", y = "value"))
 
 :::
 
-Now, how to explain this chart?
+Now, how to explain this chart? [@cr-kpi]
 
 
-PCE is personal consumption expenditure. [@cr-kpi]{zoom-to="12"}
+pce is personal consumption expenditure. [@cr-kpi]{pan-to="60%,50%" scale-by="2"}
 
-pop is population of United States. [@cr-kpi]{pan-to ="-55%, 50%" scale-by ="2"} 
+pop is population of United States. [@cr-kpi]{pan-to="-20%,50%" scale-by="2"} 
 
-psvert is saving rates in pencentage. [@cr-kpi]{pan-to = "25%, -50%" scale-by = "1.5"}
+psavert is saving rates in pencentage. [@cr-kpi]{pan-to="-80%,50%" scale-by="2"}
 
-unemploy is unemployment rate. [@cr-kpi]{pan-to = "-76%, -50%" scale-by = "2"}
+uempmed is median duration of unemployment. [@cr-kpi]{pan-to="50%,-40%" scale-by="2"}
+
+unemploy is unemployment rate. [@cr-kpi]{pan-to="-20%,-40%" scale-by="2"}
 
 :::{#cr-kpi}
 ![](closeread_formats_files\figure-html\unnamed-chunk-1-1.png)
 :::
 
+
+How neural nets works [@cr-videonn]
+
+
+:::{#cr-videonn}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aircAruvnKk?si=Iasvkb9DoNepM9Lf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+:::
+
+
+What is bond yiels [@cr-videoyield]
+
+:::{#cr-videoyield}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WQhowJQoIag?si=ocrbTPHwFgl9pCTl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+:::
 
 
 :::
