@@ -9,6 +9,7 @@ website:
     left: 
       - href: python_closeread.qmd
         text: Home
-format: closeread-html
+format: 
+  closeread-html
   
       
