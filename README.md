@@ -13,7 +13,7 @@
 - **xxx.qmd** : file_1
   > Testing the shapres, colors and position of objects(pc and mobile devices)
 
-- **xxx.qmd** : file_2
+- **python_closeread.qmd** : file_2
   > Objects manipulations (e,g zoom, highlight etc)
 
 
