@@ -131,6 +131,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="./python_closeread.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./closeread_formats.html"> 
+<span class="menu-text">Closeread formats and colors</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -148,10 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <!-- user-provided yaml closeread style options -->
       <style>
         :root {
-          --cr-narrative-text-color-overlay: #F0E8E4;
---cr-narrative-background-color-sidebar: #563f46;
---cr-narrative-background-color-overlay: #9e948f;
+          --cr-narrative-background-color-overlay: #9e948f;
 --cr-narrative-text-color-sidebar: #F0E8E4;
+--cr-narrative-text-color-overlay: #F0E8E4;
+--cr-narrative-background-color-sidebar: #563f46;
         }
       </style>
     
@@ -187,22 +191,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Draw your readers attention with:</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="1-5" data-focus-on="cr-plotnine">
+<div class="trigger new-trigger" data-focus-on="cr-plotnine" data-highlight="1-5">
 <div class="narrative">
 <p>We load the library.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="6" data-focus-on="cr-plotnine">
+<div class="trigger new-trigger" data-focus-on="cr-plotnine" data-highlight="6">
 <div class="narrative">
 <p>We use a data frame with economic data.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="9" data-focus-on="cr-plotnine">
+<div class="trigger new-trigger" data-focus-on="cr-plotnine" data-highlight="9">
 <div class="narrative">
 <p>We plot the values using date(x axis) and values(y axis).</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="12" data-focus-on="cr-plotnine">
+<div class="trigger new-trigger" data-focus-on="cr-plotnine" data-highlight="12">
 <div class="narrative">
 <p>We split the chart by variable type.</p>
 </div>
@@ -258,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </div>
 <div id="cr-plotnine" class="sticky">
-<div id="6cb59bc0" class="cell" data-execution_count="1">
+<div id="39beb11f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine</span>

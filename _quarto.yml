@@ -9,7 +9,12 @@ website:
     left: 
       - href: python_closeread.qmd
         text: Home
+      - closeread_formats.qmd
+
 format: 
-  closeread-html
+  html:
+    theme: flatly
+    toc: true
+    code-fold: true
   
       
