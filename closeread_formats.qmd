@@ -10,7 +10,6 @@ format:
       narrative-text-color-sidebar: "#F0E8E4"
 ---
 
-
 :::{.cr-section}
 
 Closeread enables scrollytelling
@@ -23,28 +22,33 @@ Draw your readers attention with: @cr-features
 3. Panning
 :::
 
-We load the library. [@cr-dplyr]{highlight="1"}
+We load the library. [@cr-plotnine]{highlight="1"}
 
-We use a data frame with economic data. [@cr-dplyr]{highlight="3"}
+We use a data frame with economic data. [@cr-plotnine]{highlight="3"}
 
-We plot the values using date(x axis) and values(y axis). [@cr-dplyr]{highlight="4"}
+We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="4"}
 
-We split the chart by variable type. [@cr-dplyr]{highlight="7"}
+We split the chart by variable type. [@cr-plotnine]{highlight="7"}
 
-:::{#cr-dplyr}
-```{r}
-#| message: false
-#| echo: true
+:::{#cr-plotnine}
+```{python}
 
-library(tidyverse)
+import numpy as np
+import pandas as pd
+import plotnine
 
-economics_long %>% 
-  ggplot(aes(x = date, y = value))+
-  geom_point()+
-  geom_line()+
-  facet_wrap(~variable, scales = "free_y")
+from plotnine import *
+from plotnine.data import economics_long
 
+(
+ggplot(economics_long, aes(x = "date", y = "value"))
++ geom_point()
++ geom_line()
++ facet_wrap("variable")
+)
 ```
+
 :::
+
 
 :::

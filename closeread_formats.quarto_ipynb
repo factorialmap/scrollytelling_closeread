@@ -1,0 +1,88 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: Closeread formats and colors\n",
+        "format:\n",
+        "  closeread-html:\n",
+        "    remove-header-space: true\n",
+        "    cr-style:\n",
+        "      narrative-background-color-overlay: \"#9e948f\"\n",
+        "      narrative-text-color-overlay: \"#F0E8E4\"\n",
+        "      narrative-background-color-sidebar: \"#563f46\"\n",
+        "      narrative-text-color-sidebar: \"#F0E8E4\"\n",
+        "---\n",
+        "\n",
+        "\n",
+        ":::{.cr-section}\n",
+        "\n",
+        "Closeread enables scrollytelling\n",
+        "\n",
+        "Draw your readers attention with: @cr-features\n",
+        "\n",
+        "::: {#cr-features}\n",
+        "1. Highlighting\n",
+        "2. Zooming\n",
+        "3. Panning\n",
+        ":::\n",
+        "\n",
+        "We load the library. [@cr-plotnine]{highlight=\"1\"}\n",
+        "\n",
+        "We use a data frame with economic data. [@cr-plotnine]{highlight=\"3\"}\n",
+        "\n",
+        "We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight=\"4\"}\n",
+        "\n",
+        "We split the chart by variable type. [@cr-plotnine]{highlight=\"7\"}\n",
+        "\n",
+        ":::{#cr-plotnine}"
+      ],
+      "id": "1040a380"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import plotnine\n",
+        "\n",
+        "from plotnine import *\n",
+        "from plotnine.data import economics_long\n",
+        "\n",
+        "(\n",
+        "ggplot(economics_long, aes(x = \"date\", y = \"value\"))\n",
+        "+ geom_point()\n",
+        "+ geom_line()\n",
+        "+ facet_wrap(\"variable\")\n",
+        ")"
+      ],
+      "id": "0e2a6cfa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "\n",
+        ":::"
+      ],
+      "id": "8c21b719"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
