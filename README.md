@@ -6,14 +6,14 @@
 
 ## Goals 
 - Identify how features can be applied to improve user experience, improving engagement in educational content.
-- Train skills in technical and scientific documents
+- Train skills in technical and scientific documentation
 
 ## File name, usage and book page
     
-- **xxx.qmd** : file_1
+- **closeread_formats.qmd** : Using R programing language
   > Testing the shapres, colors and position of objects(pc and mobile devices)
 
-- **python_closeread.qmd** : file_2
+- **python_closeread.qmd** : Using python programming language
   > Objects manipulations (e,g zoom, highlight etc)
 
 
