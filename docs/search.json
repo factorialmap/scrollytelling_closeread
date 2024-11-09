@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "python_closeread.html",
+    "href": "python_closeread.html",
+    "title": "Closeread formats and colors",
+    "section": "",
+    "text": "Closeread enables scrollytelling\n\n\n\n\nDraw your readers attention with:\n\n\n\n\nWe load the library.\n\n\n\n\nWe use a data frame with economic data.\n\n\n\n\nWe plot the values using date(x axis) and values(y axis).\n\n\n\n\nWe split the chart by variable type.\n\n\n\n\nNow, how to explain this chart?\n\n\n\n\npce is personal consumption expenditure.\n\n\n\n\npop is population of United States.\n\n\n\n\npsavert is saving rates in pencentage.\n\n\n\n\nuempmed is median duration of unemployment.\n\n\n\n\nunemploy is unemployment rate.\n\n\n\n\nHow neural nets works\n\n\n\n\nWhat is bond yiels\n\n\n\n\n\n\n\nHighlighting\nZooming\nPanning\n\n\n\n\nimport numpy as np\nimport pandas as pd\nimport plotnine\n\nfrom plotnine import *\nfrom plotnine.data import economics_long\n\n(\nggplot(economics_long, aes(x = \"date\", y = \"value\"))\n+ geom_point()\n+ geom_line()\n+ facet_wrap(\"variable\", scales='free_y')\n)"
+  },
+  {
+    "objectID": "closeread_formats.html",
+    "href": "closeread_formats.html",
+    "title": "Closeread formats and colors",
+    "section": "",
+    "text": "Closeread enables scrollytelling\n\n\n\n\nDraw your readers attention with:\n\n\n\n\nWe load the library.\n\n\n\n\nWe use a data frame with economic data.\n\n\n\n\nWe plot the values using date(x axis) and values(y axis).\n\n\n\n\nWe split the chart by variable type.\n\n\n\n\n\n\n\nHighlighting\nZooming\nPanning"
+  }
+]
