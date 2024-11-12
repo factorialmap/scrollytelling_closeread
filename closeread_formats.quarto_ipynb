@@ -41,7 +41,7 @@
         "\n",
         ":::{#cr-plotnine}\n"
       ],
-      "id": "cbda1fcb"
+      "id": "0fc0a9c5"
     },
     {
       "cell_type": "code",
@@ -61,7 +61,7 @@
         "+ facet_wrap(\"variable\")\n",
         ")"
       ],
-      "id": "0e29e69d",
+      "id": "ab364742",
       "execution_count": null,
       "outputs": []
     },
@@ -74,7 +74,7 @@
         "\n",
         ":::"
       ],
-      "id": "52b09570"
+      "id": "a0fccf10"
     }
   ],
   "metadata": {
