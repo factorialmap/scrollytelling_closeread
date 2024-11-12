@@ -1,20 +1,2 @@
 project: 
-  type: website
   output-dir: docs
-  
-
-website: 
-  title: "Python Closeread Website"
-  navbar: 
-    left: 
-      - href: python_closeread.qmd
-        text: Home
-      - closeread_formats.qmd
-
-format: 
-  html:
-    theme: flatly
-    toc: true
-    code-fold: true
-  
-      
