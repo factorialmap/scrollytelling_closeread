@@ -1,3 +1,6 @@
 project: 
   type: website
   output-dir: docs
+
+website:
+  site-url: https://factorialmap.github.io/scrollytelling_closeread
