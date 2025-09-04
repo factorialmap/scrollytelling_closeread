@@ -2,7 +2,7 @@
 
 
 $primary: #e5d1b8;
-$seconday: #2b2129;
+$secondary: #2b2129;
 $tertiary: #46b29e;
 
 $orange: #DE8E59;
@@ -15,3 +15,8 @@ $acqua: #d3eee5;
 $chery: #ee3a58;
 
 /* -- scss:rules --*/
+
+$code-block-bg: $secondary;
+$code-bg: $secondary;
+$code-color: $tertiary;
+$narrative-background-color-siderbar: $marron;
