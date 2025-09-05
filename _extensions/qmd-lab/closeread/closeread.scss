@@ -159,6 +159,12 @@
       z-index: 1;
       margin-inline: auto;
       background-color: transparent;
+      font-size: 1rem; /* Smaller font for mobile */
+      
+      .trigger {
+        padding-block: 35svh; /* Less vertical space */
+        padding-inline: 10px; /* Less horizontal space */
+      }
       
       .narrative {
         background-color: var(--cr-narrative-background-color-overlay);
@@ -170,6 +176,12 @@
 
     .sticky-col {
       grid-column: 1;
+
+      .sticky > iframe,
+      .sticky > img {
+        max-width: 95vw; /* ensure it fits the screen */
+        height: auto;
+      }
     }
   }
 }
