@@ -1,18 +1,15 @@
 ## About the project
 
-1. Testing features of the `closeread` extention for quarto_pub
-2. Test different layouts, colors and themes.
-3. Test different elements like text, images, videos, and code(python).
+1. Testing features of the `closeread` extension for Quarto Pub.
+2. Experimenting with different layouts, colors, and themes.
+3. Testing various elements such as text, images, videos, and Python code.
 
 ## Goals 
-- Identify how features can be applied to improve user experience, improving engagement in educational content.
-- Train skills in technical and scientific documentation
+- Identify how specific features can be applied to enhance user experience and increase engagement with educational content.
+- Develop skills in technical and scientific documentation.
 
 ## File name, usage and book page
     
-- **closeread_formats.qmd** : Using R programing language
-  > Testing the shapres, colors and position of objects(pc and mobile devices)
-
 - **python_closeread.qmd** : Using python programming language
   > Objects manipulations (e,g zoom, highlight etc)
 

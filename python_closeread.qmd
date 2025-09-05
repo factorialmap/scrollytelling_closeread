@@ -1,5 +1,5 @@
 ---
-title: Closeread formats and colors
+title: Features
 format:
   closeread-html:
     remove-header-space: true
@@ -22,13 +22,13 @@ Draw your readers attention with: @cr-features
 3. Panning
 :::
 
-We load the library. [@cr-plotnine]{highlight="1-5"}
+The first step is load the library, enabling access to its full set of features for the tasks ahead. [@cr-plotnine]{highlight="1-5"}
 
-We use a data frame with economic data. [@cr-plotnine]{highlight="6"}
+The next step is loading a data frame with economic data, enabling us to explore patterns and relationships across various financial indicators. [@cr-plotnine]{highlight="6"}
 
-We plot the values using date(x axis) and values(y axis). [@cr-plotnine]{highlight="9"}
+We generate a plot to visualize the data, using dates on the x-axis and corresponding value on the y-axis. This allows us to observe trends over time, identify patterns, and hightlight any significant fluctuations or anomalies in the dataset. [@cr-plotnine]{highlight="9"}
 
-We split the chart by variable type. [@cr-plotnine]{highlight="12"}
+By splitting the chart based on variable type, we can highlight how different kinds of data behave and interact within the dataset. [@cr-plotnine]{highlight="11"}
 
 :::{#cr-plotnine}
 ```{python}
@@ -43,9 +43,9 @@ from plotnine.data import economics_long
 
 (
 ggplot(economics_long, aes(x = "date", y = "value"))
-+ geom_point()
 + geom_line()
 + facet_wrap("variable", scales='free_y')
++ theme_bw()
 )
 ```
 
@@ -54,15 +54,15 @@ ggplot(economics_long, aes(x = "date", y = "value"))
 Now, how to explain this chart? [@cr-kpi]
 
 
-pce is personal consumption expenditure. [@cr-kpi]{pan-to="60%,50%" scale-by="2"}
+PCE(Personal Consumption Expenditures) represents the total value of goods and services consumed by individuals. It is a key indicator of consumer spending and is used to assess economic activity and inflation trends. [@cr-kpi]{pan-to="60%,50%" scale-by="2"}
 
-pop is population of United States. [@cr-kpi]{pan-to="-20%,50%" scale-by="2"} 
+POP(Population of the United States) refers to the total number of people residing in the U.S. This variable is essential for per capital calculations and demographic analysis. [@cr-kpi]{pan-to="-20%,50%" scale-by="2"} 
 
-psavert is saving rates in pencentage. [@cr-kpi]{pan-to="-80%,50%" scale-by="2"}
+PSAVERT(Personal Saving Rate) Indicates the percentage of disposable income that individuals save rather than spend. It reflects consumer financial behavior and economic confidence. [@cr-kpi]{pan-to="-80%,50%" scale-by="2"}
 
-uempmed is median duration of unemployment. [@cr-kpi]{pan-to="50%,-40%" scale-by="2"}
+UEMPMED(Median Duration of Unemployment) Measures the median number of weeks individuals remain unemployed. It helps assess the health of the labor market and the effectiveness of job placement effors. [@cr-kpi]{pan-to="50%,-40%" scale-by="2"}
 
-unemploy is unemployment rate. [@cr-kpi]{pan-to="-20%,-40%" scale-by="2"}
+ENEMPLOY(Unemployment Rate) represents the percentage of the labor force that is actively seeking but unable to find employment. It is a core indicator of economic performance and labor market conditions. [@cr-kpi]{pan-to="-20%,-40%" scale-by="2"}
 
 :::{#cr-kpi}
 ![](python_closeread_files/figure-html/cell-2-output-1.png)

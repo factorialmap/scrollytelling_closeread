@@ -1,15 +1,14 @@
 project:
   type: website
-  output-dir: docs  
+  output-dir: docs
 
 website:
-  title: "scrollytelling_closeread"
+  title: "Closeread Functionalities"
   site-url: https://factorialmap.github.io/scrollytelling_closeread
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - python_closeread.qmd
+
 
 format:
   html:
