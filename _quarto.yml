@@ -13,6 +13,4 @@ website:
 
 format:
   html:
-    theme:
-      - style.scss
-      - _extensions/qmd-lab/closeread/closeread.css
+    theme: style.scss
