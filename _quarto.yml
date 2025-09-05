@@ -10,3 +10,9 @@ website:
       - href: index.qmd
         text: Home
       - python_closeread.qmd
+
+format:
+  html:
+    theme:
+      - style.scss
+      - _extensions/qmd-lab/closeread/closeread.css
