@@ -2,6 +2,7 @@
 title: Features
 format:
   closeread-html:
+    embed-resources: true
     remove-header-space: true
     cr-style:
       narrative-background-color-overlay: "#9e948f"
