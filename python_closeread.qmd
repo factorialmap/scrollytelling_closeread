@@ -65,7 +65,7 @@ uempmed is median duration of unemployment. [@cr-kpi]{pan-to="50%,-40%" scale-by
 unemploy is unemployment rate. [@cr-kpi]{pan-to="-20%,-40%" scale-by="2"}
 
 :::{#cr-kpi}
-![](docs\python_closeread_files\figure-html\cell-2-output-1.png)
+![](/python_closeread_files/figure-html/cell-2-output-1.png)
 :::
 
 
