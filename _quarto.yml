@@ -8,8 +8,10 @@ website:
   navbar:
     left:
       - python_closeread.qmd
+      - efa.qmd
+      - histogram_closeread.qmd   
 
 
 format:
   html:
-    theme: style.scss
+    theme: new.css

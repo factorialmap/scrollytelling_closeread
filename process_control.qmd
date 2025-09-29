@@ -1,0 +1,29 @@
+---
+title: "Process Control"
+format:
+  closeread-html:
+    css: new.css
+    code-tools: false
+    fig-format: svg
+    toc: false
+    linkcolor: "#1abc9c"
+---
+
+:::{.cr-section}
+
+This is a scrollytelling example using an image. [@cr-histogram]
+
+Causas especiais estão agindo no processo, o que significa que fatores incomuns e externos estão causando uma variabilidade significativa e fora do padrão. Em um histograma, isso se manifesta como pontos de dados que se desviam drasticamente da distribuição normal, indicando a necessidade de uma investigação imediata para identificar e corrigir a causa-fonte.[@cr-histogram]{pan-to="80%,50%" scale-by="2"}
+
+Embora as causas especiais tenham sido eliminadas, estabilizando o processo, a variabilidade intrínseca (ou comum) do processo ainda é excessivamente alta. Isso faz com que a dispersão dos dados rompa os limites de especificação, que são as exigências do cliente para o produto. Nesse cenário, o processo é estável, mas não é capaz de atender consistentemente aos requisitos de qualidade, necessitando de uma intervenção para redesenhar ou melhorar fundamentalmente o processo, não apenas para corrigir problemas pontuais.[@cr-histogram]{pan-to="10%,50%" scale-by="2"}
+
+É realizado um trabalho sistêmico e aprofundado para a redução da variação, atacando as causas comuns de variação que são inerentes ao próprio processo. [@cr-histogram]{pan-to="-10%,50%" scale-by="2"}
+
+O histograma nos mostra que o processo, após a eliminação das causas especiais, alcançou a estabilidade e agora está estatisticamente sob controle e atendendo as especificações.[@cr-histogram]{pan-to="-80%,50%" scale-by="2"}
+
+
+:::{#cr-histogram}
+![](assets/images/histogram.png)
+:::
+
+:::

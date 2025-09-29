@@ -20,3 +20,7 @@ $code-block-bg: $secondary;
 $code-bg: $secondary;
 $code-color: $tertiary;
 $narrative-background-color-siderbar: $marron;
+
+.navbar[data-bs-theme="dark"] {
+  background-color: #e5d1b8 !important;
+}

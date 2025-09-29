@@ -1,14 +1,15 @@
 ---
-title: Features
+title: "Tentando funcionalidades do closeread"
 format:
   closeread-html:
-    remove-header-space: true
-    cr-style:
-      narrative-background-color-overlay: "#9e948f"
-      narrative-text-color-overlay: "#F0E8E4"
-      narrative-background-color-sidebar: "#563f46"
-      narrative-text-color-sidebar: "#F0E8E4"
+    css: new.css
+    code-tools: false
+    fig-format: svg
+    toc: false
+    linkcolor: "#1abc9c"
 ---
+
+# {.page-columns .page-full}
 
 :::{.cr-section}
 
