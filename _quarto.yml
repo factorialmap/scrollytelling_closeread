@@ -3,17 +3,18 @@ project:
   output-dir: docs
 
 website:
-  title: "Scrollytelling - Closeread"
+  title: "Scrollytelling Closeread"
   site-url: https://factorialmap.github.io/scrollytelling_closeread
   navbar:
     left:
-      - text: "Análises"
+      - text: "Files"
         menu:
-          - text: "Funcionalidades do Closeread"
+          - text: "Funcionalidades"
             href: python_closeread.html
           - text: "Análise Fatorial Exploratória"
             href: efa.html
-
+          - text: "Controle de Processos"
+            href: process_control.html   
 
 format:
   html:
