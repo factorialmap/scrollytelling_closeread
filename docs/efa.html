@@ -233,22 +233,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vamos instalar ou chamar os pacotes necessários.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-scale-by="1">
 <div class="narrative">
 <p>Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="1-2" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="1-2">
 <div class="narrative">
 <p>A função <code>set.seed</code> nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="4-8" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="4-8">
 <div class="narrative">
 <p>Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="'10-22" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="'10-22">
 <div class="narrative">
 <p>Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: <code>1 = Discordo totalmente</code>, <code>2 = Discordo</code>, <code>3 = Neutro</code>, <code>4 = Concordo</code>, <code>5 = Concordo totalmente</code>.</p>
 </div>
@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div id="cr-case1_packages" class="scale-to-fill sticky">
+<div id="cr-case1_packages" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregue os pacotes ou instale-os no caso de ainda não ter.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="cr-case1_data" class="scale-to-fill sticky">
+<div id="cr-case1_data" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># este comando permite replicarmos os dados randomicos</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="'1-2" data-focus-on="cr-case1_kmo">
+<div class="trigger new-trigger" data-focus-on="cr-case1_kmo" data-highlight="'1-2">
 <div class="narrative">
 <p>O teste <strong>KMO (Kaiser-Meyer-Olkin)</strong> é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso.</p>
 </div>
@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
-<div id="cr-case1_kmo" class="scale-to-fill sticky">
+<div id="cr-case1_kmo" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste KMO</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>KMO_result <span class="ot">&lt;-</span> <span class="fu">KMO</span>(<span class="fu">cor</span>(dados))</span>
@@ -382,7 +382,7 @@ $df
 </div>
 </div>
 </div>
-<div id="cr-case1_plot" class="scale-to-fill sticky">
+<div id="cr-case1_plot" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scree plot</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(dados, <span class="at">fa =</span> <span class="st">"fa"</span>, <span class="at">n.obs =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -430,7 +430,7 @@ $df
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
-<div id="cr-case1_fa_res" class="scale-to-fill sticky">
+<div id="cr-case1_fa_res" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrando os resultados da analise fatorial exploratória</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>efa_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -523,6 +523,8 @@ Proportion Var 0.201 0.201 0.196
 Cumulative Var 0.201 0.402 0.599</code></pre>
 </div>
 </div>
+</div>
+<div id="cr-case1_results_communality" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comunalidades</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>communality</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -535,6 +537,8 @@ preocupação_preço3              misc1              misc2              misc3
        0.840216665        0.008060549        0.010976924        0.010747541 </code></pre>
 </div>
 </div>
+</div>
+<div id="cr-case1_results_explained" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,14 +586,14 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
-<div id="cr-case2_packages" class="scale-to-fill sticky">
+<div id="cr-case2_packages" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="cr-case2_data" class="scale-to-fill sticky">
+<div id="cr-case2_data" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,13 +630,13 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
-<div id="cr-case2_tetra" class="scale-to-fill sticky">
+<div id="cr-case2_tetra" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="cr-case2_plot" class="scale-to-fill sticky">
+<div id="cr-case2_plot" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_tetra, <span class="at">n.obs =</span> n, <span class="at">fa =</span> <span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -662,10 +666,18 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <p>Vamos fazer a interpretação dos resultados</p>
 </div>
 </div>
-<div class="trigger">
-<div class="cell narrative">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-case2_fa" class="sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="cr-case2_fa_results" class="sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  ml
 Call: fa(r = matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
@@ -708,28 +720,18 @@ Minimum correlation of possible factor scores     0.99 -0.12</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+
+</div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
-<div id="cr-case2_fa" class="sticky">
+<div id="cr-case2_loading" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="cr-case2_loading" class="scale-to-fill">
-<pre><code>
-::::
-
-:::: {.cr-section layout="sidebar-left"}
-
-::: {#cr-case2_loading}
-::: {.cell}
-
-```{.r .cell-code}
-# Cargas fatoriais
-efa_binaria$loadings</code></pre>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -761,8 +763,10 @@ Proportion Explained  0.6333814 0.36661863
 Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </div>
 </div>
-<p>:::</p>
-<p>::::</p>
+</div>
+</div>
+</div>
+</div>
 <hr>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
@@ -778,17 +782,17 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </ul>
 </section>
 </div>
-<div class="trigger new-trigger" data-highlight="1" data-focus-on="cr-case3_data">
+<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-highlight="1">
 <div class="narrative">
 <p>O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando <code>pearson</code> para variáveis contínuas, <code>policórica</code> para variáveis ordinais, <code>tetra-córica</code> para variáveis dicotômicas.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_data">
+<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-scale-by="1">
 <div class="narrative">
 <p>Vamos gerar os dados para a simulação.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_code">
+<div class="trigger new-trigger" data-focus-on="cr-case3_code" data-scale-by="1">
 <div class="narrative">
 <p>Vamos executar a analise</p>
 </div>
@@ -810,11 +814,10 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)        <span class="co"># Likert</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))        <span class="co"># Likert</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case3_code" class="sticky">

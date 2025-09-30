@@ -77,7 +77,7 @@ Na simulação, as variáveis foram geradas como contínuas com ruído, o que si
 ![Consumidor](assets/images/consumidor.png)
 :::
 
-::: {#cr-case1_packages .scale-to-fill}
+::: {#cr-case1_packages}
 ```{r case1_packages, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Carregue os pacotes ou instale-os no caso de ainda não ter.
@@ -87,7 +87,7 @@ library(GPArotation)
 ```
 :::
 
-::: {#cr-case1_data .scale-to-fill}
+::: {#cr-case1_data}
 ```{r case1_data, warning=FALSE, message=FALSE, echo=TRUE}
 
 # este comando permite replicarmos os dados randomicos
@@ -135,7 +135,7 @@ A linha vermelha (tracejada) representa a média dos autovalores que seriam espe
 
 **A regra é simples**: você deve reter o número de fatores cujos autovalores (pontos na linha azul) estão acima dos autovalores correspondentes dos dados aleatórios (a linha vermelha). Portanto, o fato de você ter 3 pontos da linha azul acima da linha vermelha é uma forte indicação de que existem 3 fatores latentes significativos em seus dados. Os fatores seguintes estão abaixo da linha vermelha, o que sugere que eles provavelmente representam apenas variação aleatória (ruído) e não devem ser incluídos no seu modelo.
 
-::: {#cr-case1_kmo .scale-to-fill}
+::: {#cr-case1_kmo}
 ```{r case1_kmo, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Teste KMO
@@ -150,7 +150,7 @@ cortest.bartlett(cor(dados), n = n)
 :::
 
 
-::: {#cr-case1_plot .scale-to-fill}
+::: {#cr-case1_plot}
 ```{r case1_plot, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Scree plot
@@ -183,7 +183,7 @@ efa_result <- fa(dados, nfactors = 3, rotate = "varimax", fm = "ml")
 Vamos explorar os resultados apresentados na análise fatorial exploratória. @cr-case1_fa_res
 
 
-::: {#cr-case1_fa_res .scale-to-fill}
+::: {#cr-case1_fa_res}
 ```{r cr-case1_fa_res, warning=FALSE, message=FALSE, echo=TRUE}
 
 # mostrando os resultados da analise fatorial exploratória
@@ -199,7 +199,7 @@ efa_result
 
 @cr-case1_results Agora, vamos fazer a interpretação dos resultados
 
-::: {#cr-case1_results }
+::: {#cr-case1_results}
 ```{r case1_results_loadings, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Cargas fatoriais
@@ -207,6 +207,9 @@ efa_result$loadings
 
 ```
 
+:::
+
+::: {#cr-case1_results_communality}
 
 ```{r case1_results_communality, warning=FALSE, message=FALSE, echo=TRUE}
 # Comunalidades
@@ -215,6 +218,9 @@ efa_result$communality
 
 ```
 
+:::
+
+::: {#cr-case1_results_explained}
 
 ```{r case1_results_explained, warning=FALSE, message=FALSE, echo=TRUE}
 # Variância explicada
@@ -242,7 +248,7 @@ Para casos como este, a correlação tetra-córica é mais adequada. Ela é idea
 
 @cr-case2_data Vamos gerar os dados para a simulação.
 
-::: {#cr-case2_packages .scale-to-fill}
+::: {#cr-case2_packages}
 ```{r case_2_packages, warning=FALSE, message=FALSE, echo=TRUE}
 
 library(tidyverse)
@@ -253,7 +259,7 @@ library(polycor)
 
 :::
 
-::: {#cr-case2_data .scale-to-fill}
+::: {#cr-case2_data}
 ```{r case2_data, warning=FALSE, message=FALSE, echo=TRUE}
 
 set.seed(123)
@@ -284,7 +290,7 @@ dados_binarios <- tibble(
 @cr-case2_plot Vamos plotar a matriz de correlação.
 
 
-::: {#cr-case2_tetra .scale-to-fill}
+::: {#cr-case2_tetra}
 ```{r case_2_tetra, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Matriz de correlação tetra-córica
@@ -294,7 +300,7 @@ matriz_tetra <- tetrachoric(dados_binarios)$rho
 
 :::
 
-::: {#cr-case2_plot .scale-to-fill}
+::: {#cr-case2_plot}
 ```{r case_2_plot, warning=FALSE, message=FALSE, echo=TRUE}
 
 fa.parallel(matriz_tetra, n.obs = n, fa = "fa")
@@ -320,6 +326,8 @@ efa_binaria <- fa(matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
 
 :::
 
+::: {#cr-case2_fa_results}
+
 ```{r case2_fa_results, warning=FALSE, message=FALSE, echo=TRUE}
 
 # explorar os resultados da analise fatorial exploratória
@@ -328,9 +336,6 @@ efa_binaria
 ```
 
 :::
-
-::: {#cr-case2_loading .scale-to-fill}
-```
 
 ::::
 
@@ -389,8 +394,7 @@ dados_mistos <- tibble(
   fadiga = sample(1:5, 300, replace = TRUE),     # Likert
   dor_cabeca = sample(1:5, 300, replace = TRUE), # Likert
   falta_ar = rbinom(300, 1, 0.3),                # dicotômica
-  sono = sample(1:5, 300, replace = TRUE)        # Likert
-)
+  sono = sample(1:5, 300, replace = TRUE))        # Likert
 
 # Matriz de correlação heterogênea
 matriz_het <- polycor::hetcor(dados_mistos)$correlations
