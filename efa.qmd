@@ -171,27 +171,57 @@ fa.parallel(dados, fa = "fa", n.obs = n)
 
 # Análise fatorial com 3 fatores e rotação varimax
 efa_result <- fa(dados, nfactors = 3, rotate = "varimax", fm = "ml")
-print(efa_result)
 
 ```
 
 :::
 
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
+Vamos explorar os resultados apresentados na análise fatorial exploratória. @cr-case1_fa_res
+
+
+::: {#cr-case1_fa_res .scale-to-fill}
+```{r cr-case1_fa_res, warning=FALSE, message=FALSE, echo=TRUE}
+
+# mostrando os resultados da analise fatorial exploratória
+efa_result
+
+```
+
+:::
+
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
 @cr-case1_results Agora, vamos fazer a interpretação dos resultados
 
 ::: {#cr-case1_results }
-```{r case1_results, warning=FALSE, message=FALSE, echo=TRUE}
+```{r case1_results_loadings, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Cargas fatoriais
 efa_result$loadings
 
+```
+
+
+```{r case1_results_communality, warning=FALSE, message=FALSE, echo=TRUE}
 # Comunalidades
 efa_result$communality
 
+
+```
+
+
+```{r case1_results_explained, warning=FALSE, message=FALSE, echo=TRUE}
 # Variância explicada
 efa_result$Vaccounted
 
 ```
+
 :::
 
 ::::
@@ -240,9 +270,7 @@ dados_binarios <- tibble(
   perda_olfato = rbinom(n, 1, 0.2),
   perda_paladar = rbinom(n, 1, 0.2),
   congestao = rbinom(n, 1, 0.3),
-  nauseas = rbinom(n, 1, 0.25)
-)
-
+  nauseas = rbinom(n, 1, 0.25))
 ```
 
 :::
@@ -283,18 +311,32 @@ fa.parallel(matriz_tetra, n.obs = n, fa = "fa")
 
 @cr-case2_loading Vamos fazer a interpretação dos resultados
 
-::: {#cr-case2_fa .scale-to-fill}
+::: {#cr-case2_fa}
 ```{r case_2_fa, warning=FALSE, message=FALSE, echo=TRUE}
 
 efa_binaria <- fa(matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
+
+```
+
+:::
+
+```{r case2_fa_results, warning=FALSE, message=FALSE, echo=TRUE}
+
+# explorar os resultados da analise fatorial exploratória
 efa_binaria
 
 ```
 
 :::
 
-
 ::: {#cr-case2_loading .scale-to-fill}
+```
+
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
+::: {#cr-case2_loading}
 ```{r case2_loading, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Cargas fatoriais

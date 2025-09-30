@@ -233,22 +233,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vamos instalar ou chamar os pacotes necessários.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="1-2">
+<div class="trigger new-trigger" data-highlight="1-2" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>A função <code>set.seed</code> nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="4-8">
+<div class="trigger new-trigger" data-highlight="4-8" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="'10-22">
+<div class="trigger new-trigger" data-highlight="'10-22" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: <code>1 = Discordo totalmente</code>, <code>2 = Discordo</code>, <code>3 = Neutro</code>, <code>4 = Concordo</code>, <code>5 = Concordo totalmente</code>.</p>
 </div>
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_kmo" data-highlight="'1-2">
+<div class="trigger new-trigger" data-highlight="'1-2" data-focus-on="cr-case1_kmo">
 <div class="narrative">
 <p>O teste <strong>KMO (Kaiser-Meyer-Olkin)</strong> é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso.</p>
 </div>
@@ -408,19 +408,32 @@ $df
 <p>Agora, vamos executar da analise fatorial exploratória.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_results">
-<div class="narrative">
-<p>Agora, vamos fazer a interpretação dos resultados</p>
-</div>
-</div>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
 <div id="cr-case1_fa" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise fatorial com 3 fatores e rotação varimax</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>efa_result <span class="ot">&lt;-</span> <span class="fu">fa</span>(dados, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>efa_result <span class="ot">&lt;-</span> <span class="fu">fa</span>(dados, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-case1_fa_res">
+<div class="narrative">
+<p>Vamos explorar os resultados apresentados na análise fatorial exploratória.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-case1_fa_res" class="scale-to-fill sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrando os resultados da analise fatorial exploratória</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>efa_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  ml
 Call: fa(r = dados, nfactors = 3, rotate = "varimax", fm = "ml")
@@ -470,10 +483,23 @@ Minimum correlation of possible factor scores     0.85 0.85 0.84</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-case1_results">
+<div class="narrative">
+<p>Agora, vamos fazer a interpretação dos resultados</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
 <div id="cr-case1_results" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -496,8 +522,10 @@ SS loadings    2.416 2.412 2.355
 Proportion Var 0.201 0.201 0.196
 Cumulative Var 0.201 0.402 0.599</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comunalidades</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>communality</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comunalidades</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>communality</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   consumo_online1    consumo_online2    consumo_online3  fidelidade_marca1 
        0.836026811        0.755214413        0.751755055        0.788072368 
@@ -506,8 +534,10 @@ Cumulative Var 0.201 0.402 0.599</code></pre>
 preocupação_preço3              misc1              misc2              misc3 
        0.840216665        0.008060549        0.010976924        0.010747541 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            ML2       ML1       ML3
 SS loadings           2.4158011 2.4123976 2.3546043
@@ -554,29 +584,28 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_packages" class="scale-to-fill sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_data" class="scale-to-fill sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>dados_binarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>dados_binarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -599,13 +628,13 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_tetra" class="scale-to-fill sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_plot" class="scale-to-fill sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_tetra, <span class="at">n.obs =</span> n, <span class="at">fa =</span> <span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_tetra, <span class="at">n.obs =</span> n, <span class="at">fa =</span> <span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -633,13 +662,10 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <p>Vamos fazer a interpretação dos resultados</p>
 </div>
 </div>
-</div>
-<div class="sticky-col">
-<div class="sticky-col-stack">
-<div id="cr-case2_fa" class="scale-to-fill sticky">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="trigger">
+<div class="cell narrative">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  ml
 Call: fa(r = matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
@@ -681,10 +707,29 @@ Minimum correlation of possible factor scores     0.99 -0.12</code></pre>
 </div>
 </div>
 </div>
-<div id="cr-case2_loading" class="scale-to-fill sticky">
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-case2_fa" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="cr-case2_loading" class="scale-to-fill">
+<pre><code>
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
+::: {#cr-case2_loading}
+::: {.cell}
+
+```{.r .cell-code}
+# Cargas fatoriais
+efa_binaria$loadings</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -705,8 +750,8 @@ SS loadings    1.123 0.650
 Proportion Var 0.112 0.065
 Cumulative Var 0.112 0.177</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            ML1        ML2
 SS loadings           1.1228582 0.64994134
@@ -716,10 +761,8 @@ Proportion Explained  0.6333814 0.36661863
 Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+<p>:::</p>
+<p>::::</p>
 <hr>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
@@ -735,17 +778,17 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </ul>
 </section>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-highlight="1">
+<div class="trigger new-trigger" data-highlight="1" data-focus-on="cr-case3_data">
 <div class="narrative">
 <p>O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando <code>pearson</code> para variáveis contínuas, <code>policórica</code> para variáveis ordinais, <code>tetra-córica</code> para variáveis dicotômicas.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_data">
 <div class="narrative">
 <p>Vamos gerar os dados para a simulação.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_code" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_code">
 <div class="narrative">
 <p>Vamos executar a analise</p>
 </div>
@@ -755,35 +798,35 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case3_data" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)        <span class="co"># Likert</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)        <span class="co"># Likert</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case3_code" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
