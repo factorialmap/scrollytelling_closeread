@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Funcionalidades</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./efa.html">
+    <a class="dropdown-item" href="./efa2.html">
  <span class="dropdown-text">Análise Fatorial Exploratória</span></a>
   </li>  
         <li>
@@ -258,26 +258,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Na simulação abaixo, as variáveis foram geradas como contínuas com ruído, o que simula o comportamento de respostas em Likert. Isso equivale a dizer que os dados passaram por uma transformação ou suavização como por exemplo padronização (z-score), conversão para escala contínua (ex: média de itens), tratamento como intervalares para fins de modelagem.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_kmo">
-<div class="narrative">
-<p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
-</div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_plot">
-<div class="narrative">
-<p>Aqui, faremos a escolha do número de fatores. O gráfico <code>Scree Plot</code> nos ajudará a visualizar o número ideal de fatores com base nos autovalores.</p>
-</div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_fa">
-<div class="narrative">
-<p>Agora, vamos executar da analise fatorial exploratória.</p>
-</div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_results">
-<div class="narrative">
-<p>Agora, vamos fazer a interpretação dos resultados</p>
-</div>
-</div>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
@@ -323,6 +303,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">misc3 =</span> <span class="fu">rnorm</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-case1_kmo">
+<div class="narrative">
+<p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-case1_plot">
+<div class="narrative">
+<p>Aqui, faremos a escolha do número de fatores. O gráfico <code>Scree Plot</code> nos ajudará a visualizar o número ideal de fatores com base nos autovalores.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
 <div id="cr-case1_kmo" class="scale-to-fill sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste KMO</span></span>
@@ -370,7 +368,25 @@ $df
 </div>
 </div>
 </div>
-<div id="cr-case1_fa" class="scale-to-fill sticky">
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-case1_fa">
+<div class="narrative">
+<p>Agora, vamos executar da analise fatorial exploratória.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-case1_results">
+<div class="narrative">
+<p>Agora, vamos fazer a interpretação dos resultados</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-case1_fa" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise fatorial com 3 fatores e rotação varimax</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>efa_result <span class="ot">&lt;-</span> <span class="fu">fa</span>(dados, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
@@ -424,7 +440,7 @@ Minimum correlation of possible factor scores     0.85 0.85 0.84</code></pre>
 </div>
 </div>
 </div>
-<div id="cr-case1_results" class="scale-to-fill sticky">
+<div id="cr-case1_results" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

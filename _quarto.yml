@@ -12,7 +12,7 @@ website:
           - text: "Funcionalidades"
             href: python_closeread.html
           - text: "Análise Fatorial Exploratória"
-            href: efa.html
+            href: efa2.html
           - text: "Controle de Processos"
             href: process_control.html   
 
