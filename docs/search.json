@@ -32,7 +32,7 @@
     "href": "efa.html#caso3---sintomas-de-saúde-com-variáveis-mistas",
     "title": "Análise Fatorial Exploratória (EFA)",
     "section": "Caso3 - Sintomas de saúde com variáveis mistas",
-    "text": "Caso3 - Sintomas de saúde com variáveis mistas\nQuando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.\nA correlação policórica/tetra-córica pode ser mais adequada para estes casos sendo que:\n\nAs variáveis dicotômicas (0/1) devem ser tratadas com correlação tetra-córica.\nAs variáveis ordinais (Likert) devem ser tratadas com correlação policórica.\nTratar todas como contínuas (usando correlação de Pearson) pode distorcer os resultados, especialmente se houver muitas variáveis dicotômicas ou escalas curtas (ex: Likert de 3 ou 5 pontos).\n\nO pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando pearson para variáveis contínuas, policórica para variáveis ordinais, tetra-córica para variáveis dicotômicas.\n\nVamos gerar os dados para a simulação.\n\n\nVamos executar a analise"
+    "text": "Caso3 - Sintomas de saúde com variáveis mistas\nQuando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.\nA correlação policórica/tetra-córica pode ser mais adequada para estes casos sendo que:\n\nAs variáveis dicotômicas (0/1) devem ser tratadas com correlação tetra-córica.\nAs variáveis ordinais (Likert) devem ser tratadas com correlação policórica.\nTratar todas como contínuas (usando correlação de Pearson) pode distorcer os resultados, especialmente se houver muitas variáveis dicotômicas ou escalas curtas (ex: Likert de 3 ou 5 pontos)."
   },
   {
     "objectID": "process_control.html",
@@ -40,19 +40,5 @@
     "title": "Process Control",
     "section": "",
     "text": "This is a scrollytelling example using an image.\n\n\n\n\nCausas especiais estão agindo no processo, o que significa que fatores incomuns e externos estão causando uma variabilidade significativa e fora do padrão. Em um histograma, isso se manifesta como pontos de dados que se desviam drasticamente da distribuição normal, indicando a necessidade de uma investigação imediata para identificar e corrigir a causa-fonte.\n\n\n\n\nEmbora as causas especiais tenham sido eliminadas, estabilizando o processo, a variabilidade intrínseca (ou comum) do processo ainda é excessivamente alta. Isso faz com que a dispersão dos dados rompa os limites de especificação, que são as exigências do cliente para o produto. Nesse cenário, o processo é estável, mas não é capaz de atender consistentemente aos requisitos de qualidade, necessitando de uma intervenção para redesenhar ou melhorar fundamentalmente o processo, não apenas para corrigir problemas pontuais.\n\n\n\n\nÉ realizado um trabalho sistêmico e aprofundado para a redução da variação, atacando as causas comuns de variação que são inerentes ao próprio processo.\n\n\n\n\nO histograma nos mostra que o processo, após a eliminação das causas especiais, alcançou a estabilidade e agora está estatisticamente sob controle e atendendo as especificações."
-  },
-  {
-    "objectID": "efa2.html",
-    "href": "efa2.html",
-    "title": "New Post",
-    "section": "",
-    "text": "A Análise Fatorial Exploratória (EFA) é uma técnica estatística multivariada usada para identificar a estrutura subjacente (fatores latentes) em um conjunto de variáveis observadas. Ela busca agrupar variáveis correlacionadas entre si em fatores comuns, revelando padrões ocultos nos dados.\nÉ chamada de “exploratória” porque não parte de uma hipótese prévia sobre o número ou a natureza dos fatores, ao contrário da Análise Fatorial Confirmatória (CFA), que testa modelos específicos.\n\n\n\nExemplode Análise fatorial exploratória"
-  },
-  {
-    "objectID": "efa2.html#caso1-comportamento-de-consumo-com-variáveis-contínuas",
-    "href": "efa2.html#caso1-comportamento-de-consumo-com-variáveis-contínuas",
-    "title": "New Post",
-    "section": "Caso1: Comportamento de consumo com variáveis contínuas",
-    "text": "Caso1: Comportamento de consumo com variáveis contínuas\nImagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo."
   }
 ]

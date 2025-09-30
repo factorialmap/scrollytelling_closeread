@@ -62,14 +62,16 @@ Imagine que estou conduzindo uma análise fatorial em um questionário com 12 va
 Vamos instalar ou chamar os pacotes necessários. @cr-case1_packages
   
 Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes. [@cr-case1_data]{scale-by="100%,100%" scale-by="1"} 
+
+A função `set.seed` nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados. [@cr-case1_data]{highlight='1-2'}
+
+Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada. [@cr-case1_data]{highlight='4-8'}
   
-Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas.
-  
-As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: 1 = Discordo totalmente, 2 = Discordo, 3 = Neutro, 4 = Concordo, 5 = Concordo totalmente
+Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: `1 = Discordo totalmente`, `2 = Discordo`, `3 = Neutro`, `4 = Concordo`, `5 = Concordo totalmente`. [@cr-case1_data]{highlight='10-22}
   
 Apesar de serem categorias ordenadas, na prática estatística (especialmente em psicometria e ciências sociais), elas são frequentemente tratadas como variáveis contínuas, principalmente quando há muitos itens (variáveis), a escala tem mais de 4 pontos e os dados são usados em modelos paramétricos como EFA, regressão, etc.
   
-Na simulação abaixo, as variáveis foram geradas como contínuas com ruído, o que simula o comportamento de respostas em Likert. Isso equivale a dizer que os dados passaram por uma transformação ou suavização como por exemplo padronização (z-score), conversão para escala contínua (ex: média de itens), tratamento como intervalares para fins de modelagem.
+Na simulação, as variáveis foram geradas como contínuas com ruído, o que simula o comportamento de respostas em Likert. Isso equivale a dizer que os dados passaram por uma transformação ou suavização como por exemplo padronização (z-score), conversão para escala contínua (ex: média de itens), tratamento como intervalares para fins de modelagem.
 
 ::: {#cr-case1_consumidor}
 ![Consumidor](assets/images/consumidor.png)
@@ -120,7 +122,18 @@ dados <- tibble(
 
 @cr-case1_kmo Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.
 
-@cr-case1_plot Aqui, faremos a escolha do número de fatores. O gráfico `Scree Plot` nos ajudará a visualizar o número ideal de fatores com base nos autovalores.
+O teste **KMO (Kaiser-Meyer-Olkin)** é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso. [@cr-case1_kmo]{highlight='1-2}
+
+Já o **Teste de esfericidade de Bartlett** verifica a hipótese de que a sua matriz de correlação é uma matriz identidade, o que significaria que as variáveis não são correlacionadas. Um resultado estatisticamente significativo (geralmente p < 0.05) é desejado, pois rejeita essa hipótese e confirma que existe correlação suficiente entre as variáveis para justificar a aplicação da análise fatorial. [@cr-case1_kmo]
+
+@cr-case1_plot Aqui, faremos a escolha do número de fatores. O gráfico `Scree Plot` nos ajudará a visualizar o número ideal de fatores com base nos autovalores. 
+
+O gráfico gerado pela função `fa.parallel()` é um Scree Plot com Análise Paralela. Ele ajuda a separar os fatores que são realmente significativos do "ruído" aleatório nos dados.
+
+A linha azul (com "triangulo") representa os autovalores (a importância) de cada fator extraído dos seus dados reais.
+A linha vermelha (tracejada) representa a média dos autovalores que seriam esperados em um conjunto de dados aleatórios, sem estrutura real, mas com o mesmo número de variáveis e observações que o seu.
+
+**A regra é simples**: você deve reter o número de fatores cujos autovalores (pontos na linha azul) estão acima dos autovalores correspondentes dos dados aleatórios (a linha vermelha). Portanto, o fato de você ter 3 pontos da linha azul acima da linha vermelha é uma forte indicação de que existem 3 fatores latentes significativos em seus dados. Os fatores seguintes estão abaixo da linha vermelha, o que sugere que eles provavelmente representam apenas variação aleatória (ruído) e não devem ser incluídos no seu modelo.
 
 ::: {#cr-case1_kmo .scale-to-fill}
 ```{r case1_kmo, warning=FALSE, message=FALSE, echo=TRUE}
@@ -199,14 +212,6 @@ Para casos como este, a correlação tetra-córica é mais adequada. Ela é idea
 
 @cr-case2_data Vamos gerar os dados para a simulação.
 
-@cr-case2_tetra Vamos gerar a matriz de correlação.
-
-@cr-case2_plot Vamos plotar a matriz de correlação.
-
-@cr-case2_fa Vamos executar da analise fatorial exploratória.
-
-@cr-case2_loading Vamos fazer a interpretação dos resultados
-
 ::: {#cr-case2_packages .scale-to-fill}
 ```{r case_2_packages, warning=FALSE, message=FALSE, echo=TRUE}
 
@@ -242,6 +247,15 @@ dados_binarios <- tibble(
 
 :::
 
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
+@cr-case2_tetra Vamos gerar a matriz de correlação.
+
+@cr-case2_plot Vamos plotar a matriz de correlação.
+
+
 ::: {#cr-case2_tetra .scale-to-fill}
 ```{r case_2_tetra, warning=FALSE, message=FALSE, echo=TRUE}
 
@@ -260,6 +274,14 @@ fa.parallel(matriz_tetra, n.obs = n, fa = "fa")
 ```
 
 :::
+
+::::
+
+:::: {.cr-section layout="sidebar-left"}
+
+@cr-case2_fa Vamos executar da analise fatorial exploratória.
+
+@cr-case2_loading Vamos fazer a interpretação dos resultados
 
 ::: {#cr-case2_fa .scale-to-fill}
 ```{r case_2_fa, warning=FALSE, message=FALSE, echo=TRUE}
@@ -301,18 +323,17 @@ A correlação policórica/tetra-córica pode ser mais adequada para estes casos
 -   As variáveis dicotômicas (0/1) devem ser tratadas com correlação tetra-córica.
 -   As variáveis ordinais (Likert) devem ser tratadas com correlação policórica.
 -   Tratar todas como contínuas (usando correlação de Pearson) pode distorcer os resultados, especialmente se houver muitas variáveis dicotômicas ou escalas curtas (ex: Likert de 3 ou 5 pontos).
-
-O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando `pearson` para variáveis contínuas, `policórica` para variáveis ordinais, `tetra-córica` para variáveis dicotômicas.
-
-@cr-case3_data Vamos gerar os dados para a simulação.
-
-@cr-case3_code Vamos executar a analise
-
 :::
+
+O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando `pearson` para variáveis contínuas, `policórica` para variáveis ordinais, `tetra-córica` para variáveis dicotômicas. [@cr-case3_data]{highlight='1'}
+
+Vamos gerar os dados para a simulação. [@cr-case3_data]{scale-by="100%,100%" scale-by="1"}
+
+Vamos executar a analise [@cr-case3_code]{scale-by="100%,100%" scale-by="1"}
 
 
 ::: {#cr-case3_data}
-```{r case3_data, warning=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+```{r case3_data, warning=FALSE, message=FALSE, eval=FALSE, echo=TRUE}
 
 library(polycor)
 
@@ -336,7 +357,7 @@ matriz_het <- polycor::hetcor(dados_mistos)$correlations
 :::
 
 ::: {#cr-case3_code}
-```{r case3_code, warning=FALSE, message=FALSE, eval=FALSE}
+```{r case3_code, warning=FALSE, message=FALSE, eval=FALSE, echo=TRUE}
 
 library(psych)
 
