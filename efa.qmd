@@ -36,7 +36,7 @@ Ela se baseia em conceitos de correlação, covariância e álgebra linear, espe
 
 Aqui está um passo a passo prático para realizar uma EFA em R:
 
-1.  Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis.
+1.  Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis. Se forem dicotômicas será necessário utilizr abordagem específica que será explicada nos exemplos mais abaixo.
 
 2.  Verificar a adequação dos dados usando teste de Kaiser-Meyer-Olkin (KMO) e ou teste de esfericidade de Bartlett.
 
@@ -61,15 +61,15 @@ Imagine que estou conduzindo uma análise fatorial em um questionário com 12 va
 Eu aplico um questionário com 12 questões e a variância dessas 12 variáveis podem ser amplamente explicada por um número menor de clusters subjacentes chamados de **fatores**, ou seja, cada fator, consiste em muitas variáveis.
 
 :::
-  
-Vamos fazer a simulação no R mas antes precisamos instalar ou chamar os pacotes necessários. @cr-case1_packages
+
+Vamos fazer a simulação no R, e pra isso, precisaremos carregar os pacotes necessários. Caso os pacotes não estejam instalados, para instalar é simples basta usar a função `install.packages("nome_do_pacote_aqui")`.  @cr-case1_packages
   
 Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes. [@cr-case1_data]{scale-by="100%,100%" scale-by="1"} 
 
 A função `set.seed` nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados. [@cr-case1_data]{highlight='1-2'}
 
 Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada. [@cr-case1_data]{highlight='4-8'}
-  
+
 Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: `1 = Discordo totalmente`, `2 = Discordo`, `3 = Neutro`, `4 = Concordo`, `5 = Concordo totalmente`. [@cr-case1_data]{highlight='10-22}
   
 Apesar de serem categorias ordenadas, na prática estatística (especialmente em psicometria e ciências sociais), elas são frequentemente tratadas como variáveis contínuas, principalmente quando há muitos itens (variáveis), a escala tem mais de 4 pontos e os dados são usados em modelos paramétricos como EFA, regressão, etc.
@@ -88,6 +88,7 @@ library(tidyverse)
 library(psych)
 library(GPArotation)
 library(gt)
+library(parameters)
 ```
 :::
 
@@ -124,7 +125,8 @@ data_consumo <- tibble(
 
 :::: {.cr-section layout="sidebar-left"}
 
-@cr-case1_kmo Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.
+@cr-case1_kmo Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett. No código ao lado entenda o simbolo `|>` como `e então`. Você verá este simbolo frequentemente no R. Usamos a função `KMO` **e então**, transformamos os dados em um data frame usando a função `enframe` **e então**, transformamos novamente o dataframe em uma tabela usando a função `gt::gt()`.
+
 
 O teste **KMO (Kaiser-Meyer-Olkin)** é uma métrica avalia a adequação dos nossos dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso. [@cr-case1_kmo]{highlight='1-2}
 
@@ -197,8 +199,25 @@ efa_result <-
 
 :::: {.cr-section layout="sidebar-left"}
 
- @cr-case1_fa_res Vamos explorar os resultados apresentados na análise fatorial exploratória. Usaremos a função `model_parameters` que irá extrair os parâmetros do modelo (**factor loadings**).
+ @cr-case1_fa_res Vamos analisar os resultados apresentados na análise fatorial exploratória. Usamos a função `model_parameters` que irá extrair os parâmetros do modelo (**factor loadings ou cargas fatoriais**), que são os coeficiêntes de correlação entre as variáveis originais(e.g. consumo online) e os fatores (e.g. ML1, ML2, ML3). Note na tabela que elas possuem um intervalo de -1 a 1. (Se aparece valores como este não se preocupe, são notações científicas que representam valores muito baixos -1.71e-03 por exemplo).
 
+Podemos observar na tabela que as variáveis `consumo_online1`,`consumo_online2` e `consumo_online3` tem cargas fatoriais altas no fator **ML3** (0.91,0.87,0,87). Isso sugere que o **ML3** representa o construto `Consumo Online`.
+
+Quando analisamos as variáveis `fidelidade_marca1`, `fidelidade_marca2` e `fidelidade_marca3` podemos notar que há uma carga grande no fator **ML2**. Neste caso, este fator representa o constructo `Fidelidade com a Marca`.
+
+Ao observarmos as variáveis `preocupação_preço1`, `preocupação_preço2` e `preocupação_preço3` possuem cargas altas no fator **ML1**. Este fator representa o constructo `Preocupação com o Preço`.
+
+Por fim, as variáveis `misc` tem cargas baixas em todos os fatores, indicado que não se encaixam bem em nenhum desses constructos e poderiam ser removidas da análise.
+
+A coluna **Uniqueness** ou unicidade é a proporção da variância de uma variável que não é explicada pelos fatores.
+
+Um valor de unicidade baixo (ex: para consumo_online1 é 0.16) significa que os fatores explicam uma grande parte da variância daquela variável (1 - 0.16 = 84%). Isso é bom pois significa que a variável está bem representada pela solução fatorial. 
+
+Já Um valor de unicidade alto (ex: para misc1 é 0.99) significa que os fatores explicam muito pouco de sua variância (1 - 0.99 = 1%). Isso sugere que a variável não pertence ao grupo das outras e pode medir algo completamente diferente.
+
+O resumo na parte inferior informa o quanto da variância total de todas as variáveis originais é capturado pela sua solução fatorial. "The 3 latent factors... accounted for 59.86% of the total variance..." (Os 3 fatores latentes... explicaram 59.86% da variância total...). Isso significa que nosso modelo de três fatores simplifica com sucesso as 12 variáveis originais, ainda explicando quase 60% de suas informações combinadas. Este é um resultado razoavelmente bom. 
+
+As porcentagens individuais (ML2 = 20.13%, ML1 = 20.10%, ML3 = 19.62%) mostram quanta variância cada fator explica. Neste caso, os fatores têm importância aproximadamente igual.
 
 ::: {#cr-case1_fa_res}
 ```{r cr-case1_fa_res, warning=FALSE, message=FALSE, echo=TRUE}
@@ -228,7 +247,9 @@ efa_result$loadings |>
 
 :::
 
-@cr-case1_results_communality Caso precise de outros resumos estatísticos como `communality` usamos aqui a função `enframe` para retornar os dados em formato de tabela. 
+@cr-case1_results_communality Caso precise de outros resumos estatísticos como **communality** usamos aqui a função **enframe** para retornar os dados em formato de tabela.
+
+
 
 ::: {#cr-case1_results_communality}
 ```{r case1_results_communality, warning=FALSE, message=FALSE, echo=TRUE}

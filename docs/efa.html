@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="como-fazer"><span style="color: #5AC8BE ;"><strong>Como fazer?</strong></span></h3>
 <p>Aqui está um passo a passo prático para realizar uma EFA em R:</p>
 <ol type="1">
-<li><p>Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis.</p></li>
+<li><p>Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis. Se forem dicotômicas será necessário utilizr abordagem específica que será explicada nos exemplos mais abaixo.</p></li>
 <li><p>Verificar a adequação dos dados usando teste de Kaiser-Meyer-Olkin (KMO) e ou teste de esfericidade de Bartlett.</p></li>
 <li><p>Escolher o número de fatores usando scree plot (gráfico de sedimentação), critério de Kaiser (autovalores &gt; 1), e análise paralela.</p></li>
 <li><p>Executar a EFA usando a função <code>factanal()</code> ou pacotes como <code>psych</code> (<code>fa()</code>), escolher o método de extração (ex: máxima verossimilhança, componentes principais) e escolher o tipo de rotação (ex: varimax, oblimin).</p></li>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_packages">
 <div class="narrative">
-<p>Vamos fazer a simulação no R mas antes precisamos instalar ou chamar os pacotes necessários.</p>
+<p>Vamos fazer a simulação no R, e pra isso, precisaremos carregar os pacotes necessários. Caso os pacotes não estejam instalados, para instalar é simples basta usar a função <code>install.packages("nome_do_pacote_aqui")</code>.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_data" data-scale-by="1">
@@ -281,7 +281,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case1_data" class="sticky">
@@ -317,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-case1_kmo">
 <div class="narrative">
-<p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
+<p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett. No código ao lado entenda o simbolo <code>|&gt;</code> como <code>e então</code>. Você verá este simbolo frequentemente no R. Usamos a função <code>KMO</code> <strong>e então</strong>, transformamos os dados em um data frame usando a função <code>enframe</code> <strong>e então</strong>, transformamos novamente o dataframe em uma tabela usando a função <code>gt::gt()</code>.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_kmo" data-highlight="'1-2">
@@ -1395,7 +1396,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-case1_fa_res">
 <div class="narrative">
-<p>Vamos explorar os resultados apresentados na análise fatorial exploratória. Usaremos a função <code>model_parameters</code> que irá extrair os parâmetros do modelo (<strong>factor loadings</strong>).</p>
+<p>Vamos analisar os resultados apresentados na análise fatorial exploratória. Usamos a função <code>model_parameters</code> que irá extrair os parâmetros do modelo (<strong>factor loadings ou cargas fatoriais</strong>), que são os coeficiêntes de correlação entre as variáveis originais(e.g.&nbsp;consumo online) e os fatores (e.g.&nbsp;ML1, ML2, ML3). Note na tabela que elas possuem um intervalo de -1 a 1. (Se aparece valores como este não se preocupe, são notações científicas que representam valores muito baixos -1.71e-03 por exemplo).</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Podemos observar na tabela que as variáveis <code>consumo_online1</code>,<code>consumo_online2</code> e <code>consumo_online3</code> tem cargas fatoriais altas no fator <strong>ML3</strong> (0.91,0.87,0,87). Isso sugere que o <strong>ML3</strong> representa o construto <code>Consumo Online</code>.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Quando analisamos as variáveis <code>fidelidade_marca1</code>, <code>fidelidade_marca2</code> e <code>fidelidade_marca3</code> podemos notar que há uma carga grande no fator <strong>ML2</strong>. Neste caso, este fator representa o constructo <code>Fidelidade com a Marca</code>.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Ao observarmos as variáveis <code>preocupação_preço1</code>, <code>preocupação_preço2</code> e <code>preocupação_preço3</code> possuem cargas altas no fator <strong>ML1</strong>. Este fator representa o constructo <code>Preocupação com o Preço</code>.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Por fim, as variáveis <code>misc</code> tem cargas baixas em todos os fatores, indicado que não se encaixam bem em nenhum desses constructos e poderiam ser removidas da análise.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>A coluna <strong>Uniqueness</strong> ou unicidade é a proporção da variância de uma variável que não é explicada pelos fatores.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Um valor de unicidade baixo (ex: para consumo_online1 é 0.16) significa que os fatores explicam uma grande parte da variância daquela variável (1 - 0.16 = 84%). Isso é bom pois significa que a variável está bem representada pela solução fatorial.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Já Um valor de unicidade alto (ex: para misc1 é 0.99) significa que os fatores explicam muito pouco de sua variância (1 - 0.99 = 1%). Isso sugere que a variável não pertence ao grupo das outras e pode medir algo completamente diferente.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>O resumo na parte inferior informa o quanto da variância total de todas as variáveis originais é capturado pela sua solução fatorial. “The 3 latent factors… accounted for 59.86% of the total variance…” (Os 3 fatores latentes… explicaram 59.86% da variância total…). Isso significa que nosso modelo de três fatores simplifica com sucesso as 12 variáveis originais, ainda explicando quase 60% de suas informações combinadas. Este é um resultado razoavelmente bom.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>As porcentagens individuais (ML2 = 20.13%, ML1 = 20.10%, ML3 = 19.62%) mostram quanta variância cada fator explica. Neste caso, os fatores têm importância aproximadamente igual.</p>
 </div>
 </div>
 </div>
@@ -1439,7 +1485,7 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_results_communality">
 <div class="narrative">
-<p>Caso precise de outros resumos estatísticos como <code>communality</code> usamos aqui a função <code>enframe</code> para retornar os dados em formato de tabela.</p>
+<p>Caso precise de outros resumos estatísticos como <strong>communality</strong> usamos aqui a função <strong>enframe</strong> para retornar os dados em formato de tabela.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_results_explained">
