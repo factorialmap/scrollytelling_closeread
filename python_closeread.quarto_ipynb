@@ -40,7 +40,7 @@
         "\n",
         ":::{#cr-plotnine}"
       ],
-      "id": "69217c1c"
+      "id": "83bae414"
     },
     {
       "cell_type": "code",
@@ -62,7 +62,7 @@
         "+ theme_bw()\n",
         ")"
       ],
-      "id": "369e3c6a",
+      "id": "4690757f",
       "execution_count": null,
       "outputs": []
     },
@@ -111,7 +111,7 @@
         "\n",
         ":::"
       ],
-      "id": "e49a3ce2"
+      "id": "fe698b2f"
     }
   ],
   "metadata": {

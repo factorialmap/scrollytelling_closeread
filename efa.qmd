@@ -199,7 +199,7 @@ efa_result <-
 
 :::: {.cr-section layout="sidebar-left"}
 
- @cr-case1_fa_res Vamos analisar os resultados apresentados na análise fatorial exploratória. Usamos a função `model_parameters` que irá extrair os parâmetros do modelo (**factor loadings ou cargas fatoriais**), que são os coeficiêntes de correlação entre as variáveis originais(e.g. consumo online) e os fatores (e.g. ML1, ML2, ML3). Note na tabela que elas possuem um intervalo de -1 a 1. (Se aparece valores como este não se preocupe, são notações científicas que representam valores muito baixos -1.71e-03 por exemplo).
+ @cr-case1_fa_res Vamos analisar os resultados apresentados na análise fatorial exploratória. Usamos a função `model_parameters` que irá extrair os parâmetros do modelo (**factor loadings ou cargas fatoriais**), que são os coeficiêntes de correlação entre as variáveis originais(e.g. consumo online) e os fatores (e.g. ML1, ML2, ML3). Note na tabela que elas possuem um intervalo de -1 a 1. (Se aparecer valores como este -1.71e-03 por exemplo, não se preocupe, são notações científicas que representam valores muito baixos).
 
 Podemos observar na tabela que as variáveis `consumo_online1`,`consumo_online2` e `consumo_online3` tem cargas fatoriais altas no fator **ML3** (0.91,0.87,0,87). Isso sugere que o **ML3** representa o construto `Consumo Online`.
 
@@ -247,7 +247,7 @@ efa_result$loadings |>
 
 :::
 
-@cr-case1_results_communality Caso precise de outros resumos estatísticos como **communality** usamos aqui a função **enframe** para retornar os dados em formato de tabela.
+@cr-case1_results_communality Caso precise de outros resumos estatísticos como **communality** usamos aqui a função **enframe** para retornar os dados em formato de tabela.  A comunalidade é o oposto da Unicidade ou seja, (1 - Unicidade) e representa a proporção da variância que é explicada pelos fatores.
 
 
 
@@ -261,13 +261,25 @@ efa_result$communality |>
 
 :::
 
-@cr-case1_results_explained O mesmo vale para a variância explicada. 
+@cr-case1_results_explained Assim como no resumo da tabela que vimos anteriormente, também é possível listar os valores da variância explicada. 
+
+O **SS loadings** ou soma dos quadrados das cargas, é o autovalor (eigenvalue) de cada fator. Ele representa a "importância" ou a quantidade total de variância que cada fator consegue explicar a partir de todas as variáveis. Um valor maior significa que o fator é mais relevante.
+
+O **Proportion Var** ou proporção da variância, é a porcentagem da variância total que cada fator explica individualmente. Por exemplo, um valor de 0.20 significa que aquele fator sozinho explica 20% da variância de todos os nossos dados.
+
+A **Cumulative Var** ou variância cumulativa, é a soma acumulada da Proportion Var. Mostra a porcentagem total de variância explicada pelo conjunto de fatores até aquele ponto. O último valor desta linha indica o poder explicativo total do seu modelo (ex: 0.59 significa que todos os fatores juntos explicam 59% da variância total).
+
+A **Proportion Explained** ou proporção explicada, mostra a porcentagem da variância explicada que cada fator representa. A métrica foca apenas na parte que o modelo conseguiu capturar (e.g. se nosso modelo explica 60% da variância total, e o proportion explained de um fator é 0.34, isso significa que este fator é responsável por 34% desses 60% explicados).
+
+O **Cumulative Proportion** ou proporção cumulativa, é a soma acumulada da proportion explained. O valor final será sempre 1 (ou 100%), pois representa a totalidade da variância que foi explicada pelo seu conjunto de fatores(e.g. se os dois primeiros fatores têm uma cumulative proportion de 0.67, isso significa que juntos eles respondem por 67% de toda a variância que o seu modelo conseguiu explicar).
+
 
 ::: {#cr-case1_results_explained}
 ```{r case1_results_explained, warning=FALSE, message=FALSE, echo=TRUE}
 # Variância explicada
 efa_result$Vaccounted |> 
-  enframe(name = "variable", value = "value")
+  enframe(name = "variable", value = "value") |> 
+  gt::gt()
 
 ```
 
