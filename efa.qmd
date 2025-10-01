@@ -57,9 +57,12 @@ Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos 
 ## Caso1: Comportamento de consumo com variáveis contínuas
 
 Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.
+
+Eu aplico um questionário com 12 questões e a variância dessas 12 variáveis podem ser amplamente explicada por um número menor de clusters subjacentes chamados de **fatores**, ou seja, cada fator, consiste em muitas variáveis.
+
 :::
   
-Vamos instalar ou chamar os pacotes necessários. @cr-case1_packages
+Vamos fazer a simulação no R mas antes precisamos instalar ou chamar os pacotes necessários. @cr-case1_packages
   
 Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes. [@cr-case1_data]{scale-by="100%,100%" scale-by="1"} 
 
@@ -84,6 +87,7 @@ Na simulação, as variáveis foram geradas como contínuas com ruído, o que si
 library(tidyverse)
 library(psych)
 library(GPArotation)
+library(gt)
 ```
 :::
 
@@ -99,7 +103,7 @@ fator1 <- rnorm(n)
 fator2 <- rnorm(n)
 fator3 <- rnorm(n)
 
-dados <- tibble(
+data_consumo <- tibble(
   consumo_online1 = fator1 + rnorm(n, 0, 0.5),
   consumo_online2 = fator1 + rnorm(n, 0, 0.5),
   consumo_online3 = fator1 + rnorm(n, 0, 0.5),
@@ -124,7 +128,7 @@ dados <- tibble(
 
 O teste **KMO (Kaiser-Meyer-Olkin)** é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso. [@cr-case1_kmo]{highlight='1-2}
 
-Já o **Teste de esfericidade de Bartlett** verifica a hipótese de que a sua matriz de correlação é uma matriz identidade, o que significaria que as variáveis não são correlacionadas. Um resultado estatisticamente significativo (geralmente p < 0.05) é desejado, pois rejeita essa hipótese e confirma que existe correlação suficiente entre as variáveis para justificar a aplicação da análise fatorial. [@cr-case1_kmo]
+Já o **Teste de esfericidade de Bartlett** verifica a hipótese de que a sua matriz de correlação é uma matriz identidade, o que significaria que as variáveis não são correlacionadas. Um resultado estatisticamente significativo (geralmente p < 0.05) é desejado, pois rejeita essa hipótese e confirma que existe correlação suficiente entre as variáveis para justificar a aplicação da análise fatorial. [@cr-case1_bartlett]
 
 @cr-case1_plot Aqui, faremos a escolha do número de fatores. O gráfico `Scree Plot` nos ajudará a visualizar o número ideal de fatores com base nos autovalores. 
 
@@ -139,11 +143,19 @@ A linha vermelha (tracejada) representa a média dos autovalores que seriam espe
 ```{r case1_kmo, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Teste KMO
-KMO_result <- KMO(cor(dados))
-print(KMO_result)
+KMO(cor(data_consumo))$MSAi |>
+  enframe(name = "variable", value = "value") |> 
+  gt::gt()
 
+```
+
+:::
+
+::: {#cr-case1_bartlett}
+
+```{r case1_bartlett, warning=FALSE, message=FALSE, echo=TRUE}
 # Teste de esfericidade de Bartlett
-cortest.bartlett(cor(dados), n = n)
+cortest.bartlett(cor(data_consumo), n = n) |> as_tibble() |> gt::gt()
 
 ```
 
@@ -154,7 +166,7 @@ cortest.bartlett(cor(dados), n = n)
 ```{r case1_plot, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Scree plot
-fa.parallel(dados, fa = "fa", n.obs = n)
+fa.parallel(data_consumo, fa = "fa", n.obs = n)
 
 ```
 
@@ -170,7 +182,11 @@ fa.parallel(dados, fa = "fa", n.obs = n)
 ```{r case1_fa, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Análise fatorial com 3 fatores e rotação varimax
-efa_result <- fa(dados, nfactors = 3, rotate = "varimax", fm = "ml")
+efa_result <- 
+  fa(data_consumo, 
+    nfactors = 3,
+    rotate = "varimax", 
+    fm = "ml")
 
 ```
 
@@ -178,16 +194,17 @@ efa_result <- fa(dados, nfactors = 3, rotate = "varimax", fm = "ml")
 
 ::::
 
+
 :::: {.cr-section layout="sidebar-left"}
 
-Vamos explorar os resultados apresentados na análise fatorial exploratória. @cr-case1_fa_res
+ @cr-case1_fa_res Vamos explorar os resultados apresentados na análise fatorial exploratória. Usaremos a função `model_parameters` que irá extrair os parâmetros do modelo (**factor loadings**).
 
 
 ::: {#cr-case1_fa_res}
 ```{r cr-case1_fa_res, warning=FALSE, message=FALSE, echo=TRUE}
 
-# mostrando os resultados da analise fatorial exploratória
-efa_result
+# mostrando os resultados da analise fatorial exploratória - loadings
+parameters::model_parameters(efa_result)
 
 ```
 
@@ -197,34 +214,39 @@ efa_result
 
 :::: {.cr-section layout="sidebar-left"}
 
-@cr-case1_results Agora, vamos fazer a interpretação dos resultados
+
+@cr-case1_results Outra forma de extrair os loadings do modelo.
 
 ::: {#cr-case1_results}
 ```{r case1_results_loadings, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Cargas fatoriais
-efa_result$loadings
+efa_result$loadings |>
+   enframe(name = "variable", value = "value")
 
 ```
 
 :::
+
+@cr-case1_results_communality Caso precise de outros resumos estatísticos como `communality` usamos aqui a função `enframe` para retornar os dados em formato de tabela. 
 
 ::: {#cr-case1_results_communality}
-
 ```{r case1_results_communality, warning=FALSE, message=FALSE, echo=TRUE}
 # Comunalidades
-efa_result$communality
-
+efa_result$communality |> 
+  enframe(name = "variable", value = "value")
 
 ```
 
 :::
 
-::: {#cr-case1_results_explained}
+@cr-case1_results_explained O mesmo vale para a variância explicada. 
 
+::: {#cr-case1_results_explained}
 ```{r case1_results_explained, warning=FALSE, message=FALSE, echo=TRUE}
 # Variância explicada
-efa_result$Vaccounted
+efa_result$Vaccounted |> 
+  enframe(name = "variable", value = "value")
 
 ```
 

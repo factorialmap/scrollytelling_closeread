@@ -226,29 +226,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="caso1-comportamento-de-consumo-com-variáveis-contínuas" class="level2 narrative">
 <h2 class="anchored" data-anchor-id="caso1-comportamento-de-consumo-com-variáveis-contínuas">Caso1: Comportamento de consumo com variáveis contínuas</h2>
 <p>Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.</p>
+<p>Eu aplico um questionário com 12 questões e a variância dessas 12 variáveis podem ser amplamente explicada por um número menor de clusters subjacentes chamados de <strong>fatores</strong>, ou seja, cada fator, consiste em muitas variáveis.</p>
 </section>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case1_packages">
 <div class="narrative">
-<p>Vamos instalar ou chamar os pacotes necessários.</p>
+<p>Vamos fazer a simulação no R mas antes precisamos instalar ou chamar os pacotes necessários.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="1-2">
+<div class="trigger new-trigger" data-highlight="1-2" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>A função <code>set.seed</code> nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="4-8">
+<div class="trigger new-trigger" data-highlight="4-8" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="'10-22">
+<div class="trigger new-trigger" data-highlight="'10-22" data-focus-on="cr-case1_data">
 <div class="narrative">
 <p>Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: <code>1 = Discordo totalmente</code>, <code>2 = Discordo</code>, <code>3 = Neutro</code>, <code>4 = Concordo</code>, <code>5 = Concordo totalmente</code>.</p>
 </div>
@@ -279,7 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregue os pacotes ou instale-os no caso de ainda não ter.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case1_data" class="sticky">
@@ -293,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fator2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fator3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data_consumo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">consumo_online1 =</span> fator1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">consumo_online2 =</span> fator1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">consumo_online3 =</span> fator1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
@@ -318,12 +320,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_kmo" data-highlight="'1-2">
+<div class="trigger new-trigger" data-highlight="'1-2" data-focus-on="cr-case1_kmo">
 <div class="narrative">
 <p>O teste <strong>KMO (Kaiser-Meyer-Olkin)</strong> é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case1_kmo">
+<div class="trigger new-trigger" data-focus-on="cr-case1_bartlett">
 <div class="narrative">
 <p>Já o <strong>Teste de esfericidade de Bartlett</strong> verifica a hipótese de que a sua matriz de correlação é uma matriz identidade, o que significaria que as variáveis não são correlacionadas. Um resultado estatisticamente significativo (geralmente p &lt; 0.05) é desejado, pois rejeita essa hipótese e confirma que existe correlação suficiente entre as variáveis para justificar a aplicação da análise fatorial.</p>
 </div>
@@ -354,38 +356,1003 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cr-case1_kmo" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste KMO</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>KMO_result <span class="ot">&lt;-</span> <span class="fu">KMO</span>(<span class="fu">cor</span>(dados))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(KMO_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Kaiser-Meyer-Olkin factor adequacy
-Call: KMO(r = cor(dados))
-Overall MSA =  0.75
-MSA for each item = 
-   consumo_online1    consumo_online2    consumo_online3  fidelidade_marca1 
-              0.71               0.76               0.77               0.77 
- fidelidade_marca2  fidelidade_marca3 preocupação_preço1 preocupação_preço2 
-              0.76               0.74               0.75               0.79 
-preocupação_preço3              misc1              misc2              misc3 
-              0.73               0.42               0.69               0.49 </code></pre>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(<span class="fu">cor</span>(data_consumo))<span class="sc">$</span>MSAi <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="hpszetsrbb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hpszetsrbb table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hpszetsrbb thead, #hpszetsrbb tbody, #hpszetsrbb tfoot, #hpszetsrbb tr, #hpszetsrbb td, #hpszetsrbb th {
+  border-style: none;
+}
+
+#hpszetsrbb p {
+  margin: 0;
+  padding: 0;
+}
+
+#hpszetsrbb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hpszetsrbb .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hpszetsrbb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hpszetsrbb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hpszetsrbb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hpszetsrbb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hpszetsrbb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hpszetsrbb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hpszetsrbb .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hpszetsrbb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hpszetsrbb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hpszetsrbb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hpszetsrbb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hpszetsrbb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hpszetsrbb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpszetsrbb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hpszetsrbb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hpszetsrbb .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hpszetsrbb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpszetsrbb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hpszetsrbb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpszetsrbb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hpszetsrbb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpszetsrbb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hpszetsrbb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpszetsrbb .gt_left {
+  text-align: left;
+}
+
+#hpszetsrbb .gt_center {
+  text-align: center;
+}
+
+#hpszetsrbb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hpszetsrbb .gt_font_normal {
+  font-weight: normal;
+}
+
+#hpszetsrbb .gt_font_bold {
+  font-weight: bold;
+}
+
+#hpszetsrbb .gt_font_italic {
+  font-style: italic;
+}
+
+#hpszetsrbb .gt_super {
+  font-size: 65%;
+}
+
+#hpszetsrbb .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hpszetsrbb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hpszetsrbb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hpszetsrbb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hpszetsrbb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hpszetsrbb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hpszetsrbb .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hpszetsrbb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hpszetsrbb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">variable</th>
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">consumo_online1</td>
+<td class="gt_row gt_right" headers="value">0.7148735</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">consumo_online2</td>
+<td class="gt_row gt_right" headers="value">0.7555012</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">consumo_online3</td>
+<td class="gt_row gt_right" headers="value">0.7699634</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">fidelidade_marca1</td>
+<td class="gt_row gt_right" headers="value">0.7669390</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">fidelidade_marca2</td>
+<td class="gt_row gt_right" headers="value">0.7612777</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">fidelidade_marca3</td>
+<td class="gt_row gt_right" headers="value">0.7368293</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">preocupação_preço1</td>
+<td class="gt_row gt_right" headers="value">0.7539072</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">preocupação_preço2</td>
+<td class="gt_row gt_right" headers="value">0.7900853</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">preocupação_preço3</td>
+<td class="gt_row gt_right" headers="value">0.7303154</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">misc1</td>
+<td class="gt_row gt_right" headers="value">0.4193540</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">misc2</td>
+<td class="gt_row gt_right" headers="value">0.6864583</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">misc3</td>
+<td class="gt_row gt_right" headers="value">0.4946445</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de esfericidade de Bartlett</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(<span class="fu">cor</span>(dados), <span class="at">n =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$chisq
-[1] 2002.223
+</div>
+</div>
+</div>
+<div id="cr-case1_bartlett" class="sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de esfericidade de Bartlett</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(<span class="fu">cor</span>(data_consumo), <span class="at">n =</span> n) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="xrokelcugv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xrokelcugv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-$p.value
-[1] 0
+#xrokelcugv thead, #xrokelcugv tbody, #xrokelcugv tfoot, #xrokelcugv tr, #xrokelcugv td, #xrokelcugv th {
+  border-style: none;
+}
 
-$df
-[1] 66</code></pre>
+#xrokelcugv p {
+  margin: 0;
+  padding: 0;
+}
+
+#xrokelcugv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xrokelcugv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xrokelcugv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xrokelcugv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xrokelcugv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xrokelcugv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xrokelcugv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xrokelcugv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xrokelcugv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xrokelcugv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xrokelcugv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xrokelcugv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xrokelcugv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xrokelcugv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xrokelcugv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xrokelcugv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xrokelcugv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xrokelcugv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xrokelcugv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xrokelcugv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xrokelcugv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xrokelcugv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xrokelcugv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xrokelcugv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xrokelcugv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xrokelcugv .gt_left {
+  text-align: left;
+}
+
+#xrokelcugv .gt_center {
+  text-align: center;
+}
+
+#xrokelcugv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xrokelcugv .gt_font_normal {
+  font-weight: normal;
+}
+
+#xrokelcugv .gt_font_bold {
+  font-weight: bold;
+}
+
+#xrokelcugv .gt_font_italic {
+  font-style: italic;
+}
+
+#xrokelcugv .gt_super {
+  font-size: 65%;
+}
+
+#xrokelcugv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xrokelcugv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xrokelcugv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xrokelcugv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xrokelcugv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xrokelcugv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xrokelcugv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xrokelcugv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xrokelcugv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="chisq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">chisq</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+<th id="df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">df</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="chisq">2002.223</td>
+<td class="gt_row gt_right" headers="p.value">0</td>
+<td class="gt_row gt_right" headers="df">66</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </div>
 <div id="cr-case1_plot" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scree plot</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(dados, <span class="at">fa =</span> <span class="st">"fa"</span>, <span class="at">n.obs =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scree plot</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(data_consumo, <span class="at">fa =</span> <span class="st">"fa"</span>, <span class="at">n.obs =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -413,8 +1380,12 @@ $df
 <div class="sticky-col-stack">
 <div id="cr-case1_fa" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise fatorial com 3 fatores e rotação varimax</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>efa_result <span class="ot">&lt;-</span> <span class="fu">fa</span>(dados, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise fatorial com 3 fatores e rotação varimax</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>efa_result <span class="ot">&lt;-</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fa</span>(data_consumo, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nfactors =</span> <span class="dv">3</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rotate =</span> <span class="st">"varimax"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -424,7 +1395,7 @@ $df
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-case1_fa_res">
 <div class="narrative">
-<p>Vamos explorar os resultados apresentados na análise fatorial exploratória.</p>
+<p>Vamos explorar os resultados apresentados na análise fatorial exploratória. Usaremos a função <code>model_parameters</code> que irá extrair os parâmetros do modelo (<strong>factor loadings</strong>).</p>
 </div>
 </div>
 </div>
@@ -432,54 +1403,27 @@ $df
 <div class="sticky-col-stack">
 <div id="cr-case1_fa_res" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrando os resultados da analise fatorial exploratória</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>efa_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrando os resultados da analise fatorial exploratória - loadings</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(efa_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Factor Analysis using method =  ml
-Call: fa(r = dados, nfactors = 3, rotate = "varimax", fm = "ml")
-Standardized loadings (pattern matrix) based upon correlation matrix
-                     ML2   ML1   ML3     h2   u2 com
-consumo_online1     0.03 -0.01  0.91 0.8360 0.16 1.0
-consumo_online2    -0.03  0.01  0.87 0.7552 0.24 1.0
-consumo_online3    -0.03  0.00  0.87 0.7518 0.25 1.0
-fidelidade_marca1   0.89 -0.06 -0.02 0.7881 0.21 1.0
-fidelidade_marca2   0.89 -0.04 -0.04 0.7952 0.20 1.0
-fidelidade_marca3   0.91 -0.06 -0.03 0.8257 0.17 1.0
-preocupação_preço1  0.00  0.90 -0.02 0.8031 0.20 1.0
-preocupação_preço2  0.03  0.87 -0.03 0.7577 0.24 1.0
-preocupação_preço3  0.04  0.92  0.00 0.8402 0.16 1.0
-misc1               0.04 -0.08 -0.03 0.0081 0.99 1.7
-misc2              -0.07  0.01  0.08 0.0110 0.99 2.1
-misc3              -0.07 -0.04 -0.07 0.0107 0.99 2.5
+<pre><code># Rotated loadings from Factor Analysis (varimax-rotation)
 
-                       ML2  ML1  ML3
-SS loadings           2.42 2.41 2.35
-Proportion Var        0.20 0.20 0.20
-Cumulative Var        0.20 0.40 0.60
-Proportion Explained  0.34 0.34 0.33
-Cumulative Proportion 0.34 0.67 1.00
+Variable           |       ML2 |       ML1 |      ML3 | Complexity | Uniqueness
+-------------------------------------------------------------------------------
+consumo_online1    |      0.03 |     -0.01 |     0.91 |       1.00 |       0.16
+consumo_online2    |     -0.03 |  8.35e-03 |     0.87 |       1.00 |       0.24
+consumo_online3    |     -0.03 | -9.52e-04 |     0.87 |       1.00 |       0.25
+fidelidade_marca1  |      0.89 |     -0.06 |    -0.02 |       1.01 |       0.21
+fidelidade_marca2  |      0.89 |     -0.04 |    -0.04 |       1.01 |       0.20
+fidelidade_marca3  |      0.91 |     -0.06 |    -0.03 |       1.01 |       0.17
+preocupação_preço1 | -1.71e-03 |      0.90 |    -0.02 |       1.00 |       0.20
+preocupação_preço2 |      0.03 |      0.87 |    -0.03 |       1.01 |       0.24
+preocupação_preço3 |      0.04 |      0.92 | 3.80e-03 |       1.00 |       0.16
+misc1              |      0.04 |     -0.08 |    -0.03 |       1.67 |       0.99
+misc2              |     -0.07 |      0.01 |     0.08 |       2.07 |       0.99
+misc3              |     -0.07 |     -0.04 |    -0.07 |       2.49 |       0.99
 
-Mean item complexity =  1.3
-Test of the hypothesis that 3 factors are sufficient.
-
-df null model =  66  with the objective function =  6.81 with Chi Square =  2002.22
-df of  the model are 33  and the objective function was  0.1 
-
-The root mean square of the residuals (RMSR) is  0.02 
-The df corrected root mean square of the residuals is  0.03 
-
-The harmonic n.obs is  300 with the empirical chi square  18.99  with prob &lt;  0.98 
-The total n.obs was  300  with Likelihood Chi Square =  29.2  with prob &lt;  0.66 
-
-Tucker Lewis Index of factoring reliability =  1.004
-RMSEA index =  0  and the 90 % confidence intervals are  0 0.035
-BIC =  -159.03
-Fit based upon off diagonal values = 0.99
-Measures of factor score adequacy             
-                                                   ML2  ML1  ML3
-Correlation of (regression) scores with factors   0.96 0.96 0.96
-Multiple R square of scores with factors          0.92 0.93 0.92
-Minimum correlation of possible factor scores     0.85 0.85 0.84</code></pre>
+The 3 latent factors (varimax rotation) accounted for 59.86% of the total variance of the original data (ML2 = 20.13%, ML1 = 20.10%, ML3 = 19.62%).</code></pre>
 </div>
 </div>
 </div>
@@ -490,7 +1434,17 @@ Minimum correlation of possible factor scores     0.85 0.85 0.84</code></pre>
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-case1_results">
 <div class="narrative">
-<p>Agora, vamos fazer a interpretação dos resultados</p>
+<p>Outra forma de extrair os loadings do modelo.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-case1_results_communality">
+<div class="narrative">
+<p>Caso precise de outros resumos estatísticos como <code>communality</code> usamos aqui a função <code>enframe</code> para retornar os dados em formato de tabela.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-case1_results_explained">
+<div class="narrative">
+<p>O mesmo vale para a variância explicada.</p>
 </div>
 </div>
 </div>
@@ -498,57 +1452,66 @@ Minimum correlation of possible factor scores     0.85 0.85 0.84</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case1_results" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>loadings <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Loadings:
-                   ML2    ML1    ML3   
-consumo_online1                   0.914
-consumo_online2                   0.868
-consumo_online3                   0.866
-fidelidade_marca1   0.886              
-fidelidade_marca2   0.890              
-fidelidade_marca3   0.906              
-preocupação_preço1         0.896       
-preocupação_preço2         0.869       
-preocupação_preço3         0.916       
-misc1                                  
-misc2                                  
-misc3                                  
-
-                 ML2   ML1   ML3
-SS loadings    2.416 2.412 2.355
-Proportion Var 0.201 0.201 0.196
-Cumulative Var 0.201 0.402 0.599</code></pre>
+<pre><code># A tibble: 12 × 2
+   variable           value[,"ML2"]  [,"ML1"] [,"ML3"]
+   &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 consumo_online1          0.0318  -0.0112    0.914  
+ 2 consumo_online2         -0.0330   0.00835   0.868  
+ 3 consumo_online3         -0.0349  -0.000952  0.866  
+ 4 fidelidade_marca1        0.886   -0.0562   -0.0194 
+ 5 fidelidade_marca2        0.890   -0.0445   -0.0360 
+ 6 fidelidade_marca3        0.906   -0.0556   -0.0327 
+ 7 preocupação_preço1      -0.00171  0.896    -0.0216 
+ 8 preocupação_preço2       0.0317   0.869    -0.0349 
+ 9 preocupação_preço3       0.0440   0.916     0.00380
+10 misc1                    0.0370  -0.0778   -0.0254 
+11 misc2                   -0.0710   0.0147    0.0756 
+12 misc3                   -0.0714  -0.0365   -0.0657 </code></pre>
 </div>
 </div>
 </div>
 <div id="cr-case1_results_communality" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comunalidades</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>communality</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comunalidades</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>communality <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   consumo_online1    consumo_online2    consumo_online3  fidelidade_marca1 
-       0.836026811        0.755214413        0.751755055        0.788072368 
- fidelidade_marca2  fidelidade_marca3 preocupação_preço1 preocupação_preço2 
-       0.795239486        0.825689239        0.803057069        0.757746899 
-preocupação_preço3              misc1              misc2              misc3 
-       0.840216665        0.008060549        0.010976924        0.010747541 </code></pre>
+<pre><code># A tibble: 12 × 2
+   variable             value
+   &lt;chr&gt;                &lt;dbl&gt;
+ 1 consumo_online1    0.836  
+ 2 consumo_online2    0.755  
+ 3 consumo_online3    0.752  
+ 4 fidelidade_marca1  0.788  
+ 5 fidelidade_marca2  0.795  
+ 6 fidelidade_marca3  0.826  
+ 7 preocupação_preço1 0.803  
+ 8 preocupação_preço2 0.758  
+ 9 preocupação_preço3 0.840  
+10 misc1              0.00806
+11 misc2              0.0110 
+12 misc3              0.0107 </code></pre>
 </div>
 </div>
 </div>
 <div id="cr-case1_results_explained" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>efa_result<span class="sc">$</span>Vaccounted <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                            ML2       ML1       ML3
-SS loadings           2.4158011 2.4123976 2.3546043
-Proportion Var        0.2013168 0.2010331 0.1962170
-Cumulative Var        0.2013168 0.4023499 0.5985669
-Proportion Explained  0.3363313 0.3358574 0.3278113
-Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
+<pre><code># A tibble: 5 × 2
+  variable              value[,"ML2"] [,"ML1"] [,"ML3"]
+  &lt;chr&gt;                         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 SS loadings                   2.42     2.41     2.35 
+2 Proportion Var                0.201    0.201    0.196
+3 Cumulative Var                0.201    0.402    0.599
+4 Proportion Explained          0.336    0.336    0.328
+5 Cumulative Proportion         0.336    0.672    1    </code></pre>
 </div>
 </div>
 </div>
@@ -588,28 +1551,28 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_packages" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_data" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>dados_binarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dados_binarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -632,13 +1595,13 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_tetra" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_plot" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_tetra, <span class="at">n.obs =</span> n, <span class="at">fa =</span> <span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_tetra, <span class="at">n.obs =</span> n, <span class="at">fa =</span> <span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -671,13 +1634,13 @@ Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_fa" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_fa_results" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  ml
 Call: fa(r = matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
@@ -730,8 +1693,8 @@ Minimum correlation of possible factor scores     0.99 -0.12</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case2_loading" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -752,8 +1715,8 @@ SS loadings    1.123 0.650
 Proportion Var 0.112 0.065
 Cumulative Var 0.112 0.177</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            ML1        ML2
 SS loadings           1.1228582 0.64994134
@@ -782,17 +1745,17 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </ul>
 </section>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-highlight="1">
+<div class="trigger new-trigger" data-highlight="1" data-focus-on="cr-case3_data">
 <div class="narrative">
 <p>O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando <code>pearson</code> para variáveis contínuas, <code>policórica</code> para variáveis ordinais, <code>tetra-córica</code> para variáveis dicotômicas.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_data">
 <div class="narrative">
 <p>Vamos gerar os dados para a simulação.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case3_code" data-scale-by="1">
+<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_code">
 <div class="narrative">
 <p>Vamos executar a analise</p>
 </div>
@@ -802,34 +1765,34 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case3_data" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))        <span class="co"># Likert</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))        <span class="co"># Likert</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case3_code" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

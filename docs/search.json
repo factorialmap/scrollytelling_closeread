@@ -18,7 +18,7 @@
     "href": "efa.html#caso1-comportamento-de-consumo-com-variáveis-contínuas",
     "title": "Análise Fatorial Exploratória (EFA)",
     "section": "Caso1: Comportamento de consumo com variáveis contínuas",
-    "text": "Caso1: Comportamento de consumo com variáveis contínuas\nImagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo."
+    "text": "Caso1: Comportamento de consumo com variáveis contínuas\nImagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.\nEu aplico um questionário com 12 questões e a variância dessas 12 variáveis podem ser amplamente explicada por um número menor de clusters subjacentes chamados de fatores, ou seja, cada fator, consiste em muitas variáveis."
   },
   {
     "objectID": "efa.html#caso2---sintomas-de-saúde-com-variáveis-dicotômicas",
