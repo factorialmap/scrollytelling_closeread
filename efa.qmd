@@ -126,7 +126,7 @@ data_consumo <- tibble(
 
 @cr-case1_kmo Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.
 
-O teste **KMO (Kaiser-Meyer-Olkin)** é uma métrica avalia a adequação dos seus dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso. [@cr-case1_kmo]{highlight='1-2}
+O teste **KMO (Kaiser-Meyer-Olkin)** é uma métrica avalia a adequação dos nossos dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso. [@cr-case1_kmo]{highlight='1-2}
 
 Já o **Teste de esfericidade de Bartlett** verifica a hipótese de que a sua matriz de correlação é uma matriz identidade, o que significaria que as variáveis não são correlacionadas. Um resultado estatisticamente significativo (geralmente p < 0.05) é desejado, pois rejeita essa hipótese e confirma que existe correlação suficiente entre as variáveis para justificar a aplicação da análise fatorial. [@cr-case1_bartlett]
 
@@ -134,10 +134,10 @@ Já o **Teste de esfericidade de Bartlett** verifica a hipótese de que a sua ma
 
 O gráfico gerado pela função `fa.parallel()` é um Scree Plot com Análise Paralela. Ele ajuda a separar os fatores que são realmente significativos do "ruído" aleatório nos dados.
 
-A linha azul (com "triangulo") representa os autovalores (a importância) de cada fator extraído dos seus dados reais.
-A linha vermelha (tracejada) representa a média dos autovalores que seriam esperados em um conjunto de dados aleatórios, sem estrutura real, mas com o mesmo número de variáveis e observações que o seu.
+A linha azul (com "triangulo") representa os autovalores (**a importância**) de cada fator extraído dos dados reais.
+A linha vermelha (tracejada) representa a média dos autovalores que seriam esperados em um conjunto de dados aleatórios, sem estrutura real, mas com o mesmo número de variáveis e observações que o nosso conjunto de dados.
 
-**A regra é simples**: você deve reter o número de fatores cujos autovalores (pontos na linha azul) estão acima dos autovalores correspondentes dos dados aleatórios (a linha vermelha). Portanto, o fato de você ter 3 pontos da linha azul acima da linha vermelha é uma forte indicação de que existem 3 fatores latentes significativos em seus dados. Os fatores seguintes estão abaixo da linha vermelha, o que sugere que eles provavelmente representam apenas variação aleatória (ruído) e não devem ser incluídos no seu modelo.
+**A regra é simples**: você deve reter o número de fatores cujos autovalores (pontos na linha azul) estão acima dos autovalores correspondentes dos dados aleatórios (a linha vermelha). Portanto, o fato de você ter 3 pontos da linha azul acima da linha vermelha é uma forte indicação de que existem 3 fatores latentes significativos em nossos dados. Os fatores seguintes estão abaixo da linha vermelha, o que sugere que eles provavelmente representam apenas variação aleatória (ruído) e não devem ser incluídos no nosso modelo.
 
 ::: {#cr-case1_kmo}
 ```{r case1_kmo, warning=FALSE, message=FALSE, echo=TRUE}
