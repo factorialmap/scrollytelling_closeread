@@ -234,22 +234,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vamos fazer a simulação no R mas antes precisamos instalar ou chamar os pacotes necessários.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-scale-by="1">
 <div class="narrative">
 <p>Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="1-2" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="1-2">
 <div class="narrative">
 <p>A função <code>set.seed</code> nos ajuda a manter os dados randomicos fixos, permitindo que o experimento possa ser reproduzido em outra maquina, mas gerando os mesmos resultados.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="4-8" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="4-8">
 <div class="narrative">
 <p>Na sequencia geramos 300 observações de dados e depois três fatores com 300 observações cada.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="'10-22" data-focus-on="cr-case1_data">
+<div class="trigger new-trigger" data-focus-on="cr-case1_data" data-highlight="'10-22">
 <div class="narrative">
 <p>Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas. As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como: <code>1 = Discordo totalmente</code>, <code>2 = Discordo</code>, <code>3 = Neutro</code>, <code>4 = Concordo</code>, <code>5 = Concordo totalmente</code>.</p>
 </div>
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neste passo, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-highlight="'1-2" data-focus-on="cr-case1_kmo">
+<div class="trigger new-trigger" data-focus-on="cr-case1_kmo" data-highlight="'1-2">
 <div class="narrative">
 <p>O teste <strong>KMO (Kaiser-Meyer-Olkin)</strong> é uma métrica avalia a adequação dos nossos dados para a Análise Fatorial. Ele mede a proporção da variância entre as variáveis que pode ser considerada comum. Valores mais próximos de 1 indicam que as correlações entre os pares de variáveis são compactas e que a análise fatorial produzirá fatores distintos e confiáveis. Essencialmente, ele responde se suas variáveis formam um conjunto coeso.</p>
 </div>
@@ -1520,10 +1520,10 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 </div>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
-<div class="trigger new-trigger" data-focus-on="cr-case3_data">
+<div class="trigger new-trigger" data-focus-on="cr-case2_sintomas">
 <section id="caso2---sintomas-de-saúde-com-variáveis-dicotômicas" class="level2 narrative">
 <h2 class="anchored" data-anchor-id="caso2---sintomas-de-saúde-com-variáveis-dicotômicas">Caso2 - Sintomas de saúde com variáveis dicotômicas</h2>
-<p>Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.</p>
+<p>Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente/não, 1 = presente/sim). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.</p>
 </section>
 </div>
 <div class="trigger">
@@ -1538,7 +1538,7 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case2_packages">
 <div class="narrative">
-<p>Vamos carregar os pacotes</p>
+<p>Vamos carregar os pacotes necessários para análise fatorial exploratória.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-case2_data">
@@ -1549,30 +1549,42 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
+<div id="cr-case2_sintomas" class="sticky">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/sintomas.png" class="img-fluid figure-img"></p>
+<figcaption>Sintomas de saúde</figcaption>
+</figure>
+</div>
+</div>
 <div id="cr-case2_packages" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregar os pacotes necessários</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># manipulação de dados</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych) <span class="co"># Análise fatorial exploratória</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor) <span class="co"># Correlação tetra-córica</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_data" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dados_binarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># este comando permite replicarmos os dados randomicos</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulando 300 pontos de dados com 3 fatores latentes</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar os dados dicotomicos para a simulação</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>data_sintomas <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_muscular =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_olfato =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">perda_paladar =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">congestao =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">nauseas =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1596,7 +1608,7 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 <div id="cr-case2_tetra" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação tetra-córica</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(dados_binarios)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>matriz_tetra <span class="ot">&lt;-</span> <span class="fu">tetrachoric</span>(data_sintomas)<span class="sc">$</span>rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_plot" class="sticky">
@@ -1624,61 +1636,527 @@ The 3 latent factors (varimax rotation) accounted for 59.86% of the total varian
 <p>Vamos executar da analise fatorial exploratória.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-focus-on="cr-case2_loading">
-<div class="narrative">
-<p>Vamos fazer a interpretação dos resultados</p>
-</div>
-</div>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
 <div id="cr-case2_fa" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>efa_binaria <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_tetra, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>efa_sintomas <span class="ot">&lt;-</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fa</span>(matriz_tetra, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nfactors =</span> <span class="dv">2</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rotate =</span> <span class="st">"varimax"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fm =</span> <span class="st">"ml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case2_fa_results" class="sticky">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explorar os resultados da analise fatorial exploratória</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>efa_binaria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Factor Analysis using method =  ml
-Call: fa(r = matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
-Standardized loadings (pattern matrix) based upon correlation matrix
-                ML1   ML2     h2    u2 com
-febre          1.00 -0.05 0.9950 0.005 1.0
-tosse          0.16  0.27 0.0980 0.902 1.6
-fadiga        -0.05  0.10 0.0133 0.987 1.4
-dor_cabeca     0.05  0.26 0.0705 0.929 1.1
-falta_ar      -0.16  0.35 0.1442 0.856 1.4
-dor_muscular  -0.03  0.32 0.1068 0.893 1.0
-perda_olfato   0.07  0.51 0.2639 0.736 1.0
-perda_paladar -0.17  0.08 0.0352 0.965 1.4
-congestao      0.18  0.06 0.0369 0.963 1.2
-nauseas       -0.10  0.00 0.0091 0.991 1.0
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>efa_sintomas<span class="sc">$</span>loadings <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="oulrlrvita" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oulrlrvita table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-                       ML1  ML2
-SS loadings           1.12 0.65
-Proportion Var        0.11 0.06
-Cumulative Var        0.11 0.18
-Proportion Explained  0.63 0.37
-Cumulative Proportion 0.63 1.00
+#oulrlrvita thead, #oulrlrvita tbody, #oulrlrvita tfoot, #oulrlrvita tr, #oulrlrvita td, #oulrlrvita th {
+  border-style: none;
+}
 
-Mean item complexity =  1.2
-Test of the hypothesis that 2 factors are sufficient.
+#oulrlrvita p {
+  margin: 0;
+  padding: 0;
+}
 
-df null model =  45  with the objective function =  0.42
-df of  the model are 26  and the objective function was  0.16 
+#oulrlrvita .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-The root mean square of the residuals (RMSR) is  0.05 
-The df corrected root mean square of the residuals is  0.07 
+#oulrlrvita .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
 
-Fit based upon off diagonal values = 0.68
-Measures of factor score adequacy             
-                                                   ML1   ML2
-Correlation of (regression) scores with factors   1.00  0.66
-Multiple R square of scores with factors          0.99  0.44
-Minimum correlation of possible factor scores     0.99 -0.12</code></pre>
+#oulrlrvita .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oulrlrvita .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oulrlrvita .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oulrlrvita .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oulrlrvita .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oulrlrvita .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oulrlrvita .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oulrlrvita .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oulrlrvita .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#oulrlrvita .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oulrlrvita .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oulrlrvita .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oulrlrvita .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oulrlrvita .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oulrlrvita .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oulrlrvita .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oulrlrvita .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oulrlrvita .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oulrlrvita .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oulrlrvita .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oulrlrvita .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oulrlrvita .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oulrlrvita .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oulrlrvita .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oulrlrvita .gt_left {
+  text-align: left;
+}
+
+#oulrlrvita .gt_center {
+  text-align: center;
+}
+
+#oulrlrvita .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oulrlrvita .gt_font_normal {
+  font-weight: normal;
+}
+
+#oulrlrvita .gt_font_bold {
+  font-weight: bold;
+}
+
+#oulrlrvita .gt_font_italic {
+  font-style: italic;
+}
+
+#oulrlrvita .gt_super {
+  font-size: 65%;
+}
+
+#oulrlrvita .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#oulrlrvita .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oulrlrvita .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oulrlrvita .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oulrlrvita .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oulrlrvita .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oulrlrvita .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#oulrlrvita .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#oulrlrvita div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">variable</th>
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">febre</td>
+<td class="gt_row gt_center" headers="value">0.9963915404</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">tosse</td>
+<td class="gt_row gt_center" headers="value">0.1556562354</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">fadiga</td>
+<td class="gt_row gt_center" headers="value">-0.0491594500</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">dor_cabeca</td>
+<td class="gt_row gt_center" headers="value">0.0451044499</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">falta_ar</td>
+<td class="gt_row gt_center" headers="value">-0.1551411455</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">dor_muscular</td>
+<td class="gt_row gt_center" headers="value">-0.0348689816</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">perda_olfato</td>
+<td class="gt_row gt_center" headers="value">0.0718782295</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">perda_paladar</td>
+<td class="gt_row gt_center" headers="value">-0.1702130308</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">congestao</td>
+<td class="gt_row gt_center" headers="value">0.1812306888</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">nauseas</td>
+<td class="gt_row gt_center" headers="value">-0.0954674064</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </div>
@@ -1687,43 +2165,1020 @@ Minimum correlation of possible factor scores     0.99 -0.12</code></pre>
 </div>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
-
+<div class="trigger new-trigger" data-focus-on="cr-case2_loading">
+<div class="narrative">
+<p>Vamos fazer a interpretação dos resultados</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-case2_results_explained">
+<div class="narrative">
+<p>Nesta etapa fazemos a análise de variância explicada.</p>
+</div>
+</div>
 </div>
 <div class="sticky-col">
 <div class="sticky-col-stack">
 <div id="cr-case2_loading" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Loadings:
-              ML1    ML2   
-febre          0.996       
-tosse          0.156  0.272
-fadiga                0.104
-dor_cabeca            0.262
-falta_ar      -0.155  0.347
-dor_muscular          0.325
-perda_olfato          0.509
-perda_paladar -0.170       
-congestao      0.181       
-nauseas                    
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargas fatoriais</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>efa_sintomas<span class="sc">$</span>loadings <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="cgbjhzkjkt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cgbjhzkjkt table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-                 ML1   ML2
-SS loadings    1.123 0.650
-Proportion Var 0.112 0.065
-Cumulative Var 0.112 0.177</code></pre>
+#cgbjhzkjkt thead, #cgbjhzkjkt tbody, #cgbjhzkjkt tfoot, #cgbjhzkjkt tr, #cgbjhzkjkt td, #cgbjhzkjkt th {
+  border-style: none;
+}
+
+#cgbjhzkjkt p {
+  margin: 0;
+  padding: 0;
+}
+
+#cgbjhzkjkt .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cgbjhzkjkt .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cgbjhzkjkt .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cgbjhzkjkt .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cgbjhzkjkt .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cgbjhzkjkt .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cgbjhzkjkt .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cgbjhzkjkt .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cgbjhzkjkt .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cgbjhzkjkt .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cgbjhzkjkt .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cgbjhzkjkt .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cgbjhzkjkt .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cgbjhzkjkt .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cgbjhzkjkt .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cgbjhzkjkt .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cgbjhzkjkt .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cgbjhzkjkt .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cgbjhzkjkt .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cgbjhzkjkt .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cgbjhzkjkt .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cgbjhzkjkt .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cgbjhzkjkt .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cgbjhzkjkt .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cgbjhzkjkt .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cgbjhzkjkt .gt_left {
+  text-align: left;
+}
+
+#cgbjhzkjkt .gt_center {
+  text-align: center;
+}
+
+#cgbjhzkjkt .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cgbjhzkjkt .gt_font_normal {
+  font-weight: normal;
+}
+
+#cgbjhzkjkt .gt_font_bold {
+  font-weight: bold;
+}
+
+#cgbjhzkjkt .gt_font_italic {
+  font-style: italic;
+}
+
+#cgbjhzkjkt .gt_super {
+  font-size: 65%;
+}
+
+#cgbjhzkjkt .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cgbjhzkjkt .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cgbjhzkjkt .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cgbjhzkjkt .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cgbjhzkjkt .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cgbjhzkjkt .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cgbjhzkjkt .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#cgbjhzkjkt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#cgbjhzkjkt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">variable</th>
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">febre</td>
+<td class="gt_row gt_center" headers="value">0.9963915404</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">tosse</td>
+<td class="gt_row gt_center" headers="value">0.1556562354</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">fadiga</td>
+<td class="gt_row gt_center" headers="value">-0.0491594500</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">dor_cabeca</td>
+<td class="gt_row gt_center" headers="value">0.0451044499</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">falta_ar</td>
+<td class="gt_row gt_center" headers="value">-0.1551411455</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">dor_muscular</td>
+<td class="gt_row gt_center" headers="value">-0.0348689816</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">perda_olfato</td>
+<td class="gt_row gt_center" headers="value">0.0718782295</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">perda_paladar</td>
+<td class="gt_row gt_center" headers="value">-0.1702130308</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">congestao</td>
+<td class="gt_row gt_center" headers="value">0.1812306888</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">nauseas</td>
+<td class="gt_row gt_center" headers="value">-0.0954674064</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>efa_binaria<span class="sc">$</span>Vaccounted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                            ML1        ML2
-SS loadings           1.1228582 0.64994134
-Proportion Var        0.1122858 0.06499413
-Cumulative Var        0.1122858 0.17727995
-Proportion Explained  0.6333814 0.36661863
-Cumulative Proportion 0.6333814 1.00000000</code></pre>
+</div>
+</div>
+</div>
+<div id="cr-case2_results_explained" class="sticky">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância explicada</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa_sintomas<span class="sc">$</span>Vaccounted <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="kmuofzuddb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kmuofzuddb table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kmuofzuddb thead, #kmuofzuddb tbody, #kmuofzuddb tfoot, #kmuofzuddb tr, #kmuofzuddb td, #kmuofzuddb th {
+  border-style: none;
+}
+
+#kmuofzuddb p {
+  margin: 0;
+  padding: 0;
+}
+
+#kmuofzuddb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kmuofzuddb .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kmuofzuddb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kmuofzuddb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kmuofzuddb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kmuofzuddb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kmuofzuddb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kmuofzuddb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kmuofzuddb .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kmuofzuddb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kmuofzuddb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kmuofzuddb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kmuofzuddb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kmuofzuddb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kmuofzuddb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kmuofzuddb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kmuofzuddb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kmuofzuddb .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kmuofzuddb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kmuofzuddb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kmuofzuddb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kmuofzuddb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kmuofzuddb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kmuofzuddb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kmuofzuddb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kmuofzuddb .gt_left {
+  text-align: left;
+}
+
+#kmuofzuddb .gt_center {
+  text-align: center;
+}
+
+#kmuofzuddb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kmuofzuddb .gt_font_normal {
+  font-weight: normal;
+}
+
+#kmuofzuddb .gt_font_bold {
+  font-weight: bold;
+}
+
+#kmuofzuddb .gt_font_italic {
+  font-style: italic;
+}
+
+#kmuofzuddb .gt_super {
+  font-size: 65%;
+}
+
+#kmuofzuddb .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kmuofzuddb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kmuofzuddb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kmuofzuddb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kmuofzuddb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kmuofzuddb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kmuofzuddb .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kmuofzuddb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kmuofzuddb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">variable</th>
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">SS loadings</td>
+<td class="gt_row gt_center" headers="value">1.12285819</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">Proportion Var</td>
+<td class="gt_row gt_center" headers="value">0.11228582</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">Cumulative Var</td>
+<td class="gt_row gt_center" headers="value">0.11228582</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="variable">Proportion Explained</td>
+<td class="gt_row gt_center" headers="value">0.63338137</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="variable">Cumulative Proportion</td>
+<td class="gt_row gt_center" headers="value">0.63338137</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </div>
@@ -1745,17 +3200,17 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </ul>
 </section>
 </div>
-<div class="trigger new-trigger" data-highlight="1" data-focus-on="cr-case3_data">
+<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-highlight="1">
 <div class="narrative">
 <p>O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando <code>pearson</code> para variáveis contínuas, <code>policórica</code> para variáveis ordinais, <code>tetra-córica</code> para variáveis dicotômicas.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_data">
+<div class="trigger new-trigger" data-focus-on="cr-case3_data" data-scale-by="1">
 <div class="narrative">
 <p>Vamos gerar os dados para a simulação.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-case3_code">
+<div class="trigger new-trigger" data-focus-on="cr-case3_code" data-scale-by="1">
 <div class="narrative">
 <p>Vamos executar a analise</p>
 </div>
@@ -1765,34 +3220,34 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 <div class="sticky-col-stack">
 <div id="cr-case3_data" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))        <span class="co"># Likert</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polycor)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponha que você tenha um data frame com variáveis mistas</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Algumas dicotômicas (0/1), outras em escala de Likert (1 a 5)</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo simulado</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>dados_mistos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">febre =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.6</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tosse =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),                   <span class="co"># dicotômica</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fadiga =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),     <span class="co"># Likert</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dor_cabeca =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="co"># Likert</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">falta_ar =</span> <span class="fu">rbinom</span>(<span class="dv">300</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),                <span class="co"># dicotômica</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">sono =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))        <span class="co"># Likert</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlação heterogênea</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>matriz_het <span class="ot">&lt;-</span> polycor<span class="sc">::</span><span class="fu">hetcor</span>(dados_mistos)<span class="sc">$</span>correlations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="cr-case3_code" class="sticky">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher número de fatores (opcional)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(matriz_het, <span class="at">n.obs =</span> <span class="dv">300</span>, <span class="at">fa =</span> <span class="st">"fa"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Executar EFA</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

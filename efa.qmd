@@ -256,26 +256,32 @@ efa_result$Vaccounted |>
 
 :::: {.cr-section layout="sidebar-left"}
 
-::: {focus-on = "cr-case3_data"}
+::: {focus-on = "cr-case2_sintomas"}
 ## Caso2 - Sintomas de saúde com variáveis dicotômicas
 
-Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.
+Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente/não, 1 = presente/sim). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.
+:::
+
+::: {#cr-case2_sintomas}
+![Sintomas de saúde](assets/images/sintomas.png)
 :::
 
 Quando lidamos com variáveis dicotômicas (0 = ausente, 1 = presente) em uma análise fatorial exploratória, precisamos adaptar a abordagem tradicional, pois a matriz de correlação padrão (Pearson) não é apropriada para variáveis categóricas.
 
 Para casos como este, a correlação tetra-córica é mais adequada. Ela é ideal para variáveis dicotômicas que representam uma versão categorizada de uma variável contínua subjacente, pois estima a correlação entre essas variáveis como se fossem contínuas e normalmente distribuídas.
 
-@cr-case2_packages Vamos carregar os pacotes
+@cr-case2_packages Vamos carregar os pacotes necessários para análise fatorial exploratória.
+
 
 @cr-case2_data Vamos gerar os dados para a simulação.
 
 ::: {#cr-case2_packages}
 ```{r case_2_packages, warning=FALSE, message=FALSE, echo=TRUE}
 
-library(tidyverse)
-library(psych)
-library(polycor)
+# carregar os pacotes necessários
+library(tidyverse)  # manipulação de dados
+library(psych) # Análise fatorial exploratória
+library(polycor) # Correlação tetra-córica
 
 ```
 
@@ -284,11 +290,14 @@ library(polycor)
 ::: {#cr-case2_data}
 ```{r case2_data, warning=FALSE, message=FALSE, echo=TRUE}
 
+# este comando permite replicarmos os dados randomicos
 set.seed(123)
 
+# Simulando 300 pontos de dados com 3 fatores latentes
 n <- 300
 
-dados_binarios <- tibble(
+# Gerar os dados dicotomicos para a simulação
+data_sintomas <- tibble(
   febre = rbinom(n, 1, 0.6),
   tosse = rbinom(n, 1, 0.5),
   fadiga = rbinom(n, 1, 0.4),
@@ -316,7 +325,7 @@ dados_binarios <- tibble(
 ```{r case_2_tetra, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Matriz de correlação tetra-córica
-matriz_tetra <- tetrachoric(dados_binarios)$rho
+matriz_tetra <- tetrachoric(data_sintomas)$rho
 
 ```
 
@@ -337,23 +346,27 @@ fa.parallel(matriz_tetra, n.obs = n, fa = "fa")
 
 @cr-case2_fa Vamos executar da analise fatorial exploratória.
 
-@cr-case2_loading Vamos fazer a interpretação dos resultados
 
 ::: {#cr-case2_fa}
 ```{r case_2_fa, warning=FALSE, message=FALSE, echo=TRUE}
 
-efa_binaria <- fa(matriz_tetra, nfactors = 2, rotate = "varimax", fm = "ml")
+efa_sintomas <- 
+  fa(matriz_tetra, 
+    nfactors = 2,
+    rotate = "varimax", 
+    fm = "ml")
 
 ```
 
 :::
 
 ::: {#cr-case2_fa_results}
-
 ```{r case2_fa_results, warning=FALSE, message=FALSE, echo=TRUE}
 
 # explorar os resultados da analise fatorial exploratória
-efa_binaria
+efa_sintomas$loadings |> 
+  enframe(name = "variable", value = "value") |>
+  gt::gt()
 
 ```
 
@@ -363,14 +376,29 @@ efa_binaria
 
 :::: {.cr-section layout="sidebar-left"}
 
+@cr-case2_loading Vamos fazer a interpretação dos resultados
+
 ::: {#cr-case2_loading}
 ```{r case2_loading, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Cargas fatoriais
-efa_binaria$loadings
+efa_sintomas$loadings |> 
+  enframe(name = "variable", value = "value") |>
+  gt::gt()
 
+```
+
+:::
+
+@cr-case2_results_explained Nesta etapa fazemos a análise de variância explicada.
+
+::: {#cr-case2_results_explained}
+
+```{r case2_results_explained, warning=FALSE, message=FALSE, echo=TRUE}
 # Variância explicada
-efa_binaria$Vaccounted
+efa_sintomas$Vaccounted |> 
+  enframe(name = "variable", value = "value") |>
+  gt::gt()
 
 ```
 

@@ -25,7 +25,7 @@
     "href": "efa.html#caso2---sintomas-de-saúde-com-variáveis-dicotômicas",
     "title": "Análise Fatorial Exploratória (EFA)",
     "section": "Caso2 - Sintomas de saúde com variáveis dicotômicas",
-    "text": "Caso2 - Sintomas de saúde com variáveis dicotômicas\nImagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar."
+    "text": "Caso2 - Sintomas de saúde com variáveis dicotômicas\nImagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente/não, 1 = presente/sim). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar."
   },
   {
     "objectID": "efa.html#caso3---sintomas-de-saúde-com-variáveis-mistas",
